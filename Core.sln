@@ -5,19 +5,21 @@ VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{22724285-11CA-450E-91A0-991E85AD6D31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Common", "src\Core.Common\Core.Common.csproj", "{F11CFD5E-7810-448D-BE67-599717D1919B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Common", "src\Core.Common\Core.Common.csproj", "{F11CFD5E-7810-448D-BE67-599717D1919B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Entity", "src\Core.Entity\Core.Entity.csproj", "{30D852F1-9555-408E-9F18-8864C49CCC66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Entity", "src\Core.Entity\Core.Entity.csproj", "{30D852F1-9555-408E-9F18-8864C49CCC66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.IRepository", "src\Core.IRepository\Core.IRepository.csproj", "{D7D73B31-C322-4ED1-91ED-5FD7C1F2F953}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.IRepository", "src\Core.IRepository\Core.IRepository.csproj", "{D7D73B31-C322-4ED1-91ED-5FD7C1F2F953}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Repository", "src\Core.Repository\Core.Repository.csproj", "{0BEC6E4E-2201-4B9E-BB13-3314CADDEE38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Repository", "src\Core.Repository\Core.Repository.csproj", "{0BEC6E4E-2201-4B9E-BB13-3314CADDEE38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Service", "src\Core.Service\Core.Service.csproj", "{380325D8-9C59-4A21-BDE6-50AD1C766FFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Service", "src\Core.Service\Core.Service.csproj", "{380325D8-9C59-4A21-BDE6-50AD1C766FFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.IService", "src\Core.IService\Core.IService.csproj", "{CAE3B291-55D1-498F-A475-66C3328FD623}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.IService", "src\Core.IService\Core.IService.csproj", "{CAE3B291-55D1-498F-A475-66C3328FD623}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.API", "src\Core.API\Core.API.csproj", "{5B5D87CF-6A21-4722-98EF-9242E1CD2285}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.API", "src\Core.API\Core.API.csproj", "{5B5D87CF-6A21-4722-98EF-9242E1CD2285}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{FFA52D31-A6C9-46F6-B982-738EF4781408}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
