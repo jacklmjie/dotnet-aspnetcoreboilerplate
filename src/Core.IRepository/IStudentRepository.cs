@@ -1,9 +1,10 @@
 ﻿using Core.Entity;
+using System.Threading.Tasks;
 
 namespace Core.IRepository
 {
     public interface IStudentRepository
     {
-        int Add(Student entity, bool IsCommit = false);
+        Task<int> Add(Student entity);
     }
 }

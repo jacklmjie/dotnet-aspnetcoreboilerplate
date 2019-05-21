@@ -4,6 +4,8 @@ namespace Core.IService
 {
     public interface IStudentService
     {
-        void Add(Student student);
+        int Add(Student student);
+
+        bool AddUnit(Student student);
     }
 }

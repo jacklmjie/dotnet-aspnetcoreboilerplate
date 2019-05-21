@@ -6,24 +6,30 @@ namespace Core.Service
 {
     public class StudentService : IStudentService
     {
-        private readonly IUnitOfWork _unitOfWork;
         private readonly IStudentRepository _studentRepository;
         private readonly IClassRoomRepository _classRoomRepository;
-        public StudentService(IUnitOfWork unitOfWork,
-        IStudentRepository studentRepository,
+        public StudentService(IStudentRepository studentRepository,
         IClassRoomRepository classRoomRepository)
         {
-            _unitOfWork = unitOfWork;
             _classRoomRepository = classRoomRepository;
             _studentRepository = studentRepository;
         }
 
-        public void Add(Student student)
+        public int Add(Student student)
         {
-            //TODO:需要测试，是否实现了事物，同时添加成功或者同时添加失败
-            _studentRepository.Add(student);
-            _studentRepository.Add(student);
-            _unitOfWork.SaveChanges();
+            //TODO:把StudentViewModel映射到Student
+            var model = new Student() { Name = "test", Age = 1, Sex = 0, ClassRoom = 1 };
+            var task =  _studentRepository.Add(model);
+            task.Wait();
+            return task.Result;
+        }
+
+        public bool AddUnit(Student student)
+        {
+            var model = new Student();
+            _studentRepository.Add(model);
+            _studentRepository.Add(model);
+            return true;
         }
     }
 }

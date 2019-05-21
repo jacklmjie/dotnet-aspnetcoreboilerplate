@@ -1,18 +1,37 @@
 ﻿using Core.Entity;
 using Core.IRepository;
-using Microsoft.EntityFrameworkCore;
+using Dapper.Contrib.Extensions;
+using Microsoft.Extensions.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 namespace Core.Repository
 {
-    public class StudentRepository : Repository<Student>, IStudentRepository
+    public class StudentRepository : IStudentRepository
     {
-        public StudentRepository(DbContext dbContext)
-          : base(dbContext)
-        { }
-
-        public override int Add(Student entity, bool IsCommit = false)
+        private readonly IConfiguration _config;
+        public StudentRepository(IConfiguration config)
         {
-            return base.Add(entity, IsCommit);
+            _config = config;
+        }
+
+        public IDbConnection Connection
+        {
+            get
+            {
+                return new SqlConnection(_config.GetConnectionString("MyConnectionString"));
+            }
+        }
+
+        public async Task<int> Add(Student entity)
+        {
+            using (IDbConnection conn = Connection)
+            {
+                conn.Open();
+                var id = await conn.InsertAsync(entity);
+                return id;
+            }
         }
     }
 }

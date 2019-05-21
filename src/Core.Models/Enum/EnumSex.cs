@@ -1,4 +1,4 @@
-﻿namespace Core.Entity.Enum
+﻿namespace Core.Models.Enum
 {
     /// <summary>
     /// 性别枚举

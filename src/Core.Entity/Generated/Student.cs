@@ -1,15 +1,17 @@
-﻿using Core.Entity.Enum;
+﻿using Dapper.Contrib.Extensions;
 
 namespace Core.Entity
 {
     /// <summary>
     /// 学生
     /// </summary>
-    public class Student
+    [Table("ClassRoom")]
+    public partial class Student
     {
         /// <summary>
         /// 用户Id        
         /// </summary>
+        [Key]
         public long Id { get; set; }
         /// <summary>
         /// 姓名
@@ -18,14 +20,10 @@ namespace Core.Entity
         /// <summary>
         /// 性别
         /// </summary>
-        public EnumSex Sex { get; set; }
+        public int Sex { get; set; }
         /// <summary>
         /// 年龄
         /// </summary>
         public int Age { get; set; }
-        /// <summary>
-        /// 所属班级
-        /// </summary>
-        public int ClassRoomId { get; set; }
     }
 }

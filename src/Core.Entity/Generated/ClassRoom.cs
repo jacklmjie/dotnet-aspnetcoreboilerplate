@@ -1,13 +1,17 @@
-﻿namespace Core.Entity
+﻿using Dapper.Contrib.Extensions;
+
+namespace Core.Entity
 {
     /// <summary>
     ///班级
     /// </summary>
+    [Table("ClassRoom")]
     public class ClassRoom
     {
         /// <summary>
         /// 主键Id
         /// </summary>
+        [Key]
         public long Id { get; set; }
 
         /// <summary>

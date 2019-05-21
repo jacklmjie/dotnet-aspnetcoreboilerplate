@@ -1,6 +1,7 @@
-﻿using Core.API.Db;
-using Core.IRepository;
+﻿using Core.IRepository;
+using Core.IService;
 using Core.Repository;
+using Core.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -32,18 +33,17 @@ namespace Core.API
                 options.Filters.Add<GlobalExceptionFilter>();
                 options.Filters.Add<GlobalValidateModelFilter>();
             }).SetCompatibilityVersion(CompatibilityVersion.Latest);
-            var dbContextOptions = new DbContextOptionsBuilder<EFCoreDbContext>()
-                                   .UseSqlServer(Configuration["ConnectionStrings:EFCoreDbContext"]).Options;
-            services.AddScoped(s => new EFCoreDbContext(dbContextOptions));
-            services.AddScoped<IUnitOfWork, UnitOfWork<EFCoreDbContext>>();
-            RegisterRepository(services);
-            RegisterService(services);
+            //var Connection = Configuration.GetConnectionString("DbContext");
+            services.AddScoped<IStudentRepository, StudentRepository>();
+            services.AddScoped<IStudentService, StudentService>();
+            //RegisterRepository(services);
+            //RegisterService(services);
             RegisterSwagger(services);
         }
 
         private void RegisterRepository(IServiceCollection services)
         {
-            var assembly = Assembly.Load("Core.IService");
+            var assembly = Assembly.Load("Core.Service");
             var allTypes = assembly.GetTypes();
             foreach (var type in allTypes)
             {
@@ -53,7 +53,7 @@ namespace Core.API
 
         private void RegisterService(IServiceCollection services)
         {
-            var assembly = Assembly.Load("Core.IRepository");
+            var assembly = Assembly.Load("Core.Repository");
             var allTypes = assembly.GetTypes();
             foreach (var type in allTypes)
             {
