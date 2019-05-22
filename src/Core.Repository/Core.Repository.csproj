@@ -5,8 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dapper.SimpleCRUD" Version="2.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core.Common\Core.Common.csproj" />
     <ProjectReference Include="..\Core.Entity\Core.Entity.csproj" />
     <ProjectReference Include="..\Core.IRepository\Core.IRepository.csproj" />
+    <ProjectReference Include="..\Core.Models\Core.Models.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,10 +22,6 @@
     <Reference Include="Microsoft.Extensions.Configuration.Abstractions">
       <HintPath>C:\Program Files (x86)\dotnet\sdk\NuGetFallbackFolder\microsoft.extensions.configuration.abstractions\2.2.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
     </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Dapper.Contrib" Version="1.60.1" />
   </ItemGroup>
 
 </Project>

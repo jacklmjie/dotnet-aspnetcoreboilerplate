@@ -2,7 +2,7 @@
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 
-namespace Core.Common.Ip
+namespace Core.Common
 {
     /// <summary>
     /// IpUtility

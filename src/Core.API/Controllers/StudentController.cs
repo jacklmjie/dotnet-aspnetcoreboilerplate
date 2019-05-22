@@ -1,4 +1,4 @@
-﻿using Core.Common.Messages;
+﻿using Core.Common;
 using Core.Entity;
 using Core.IService;
 using Microsoft.AspNetCore.Mvc;
@@ -19,65 +19,69 @@ namespace Core.API.Controllers
             _studentService = studentService;
         }
 
-        [HttpPost]
-        public async Task<ResponseMessageWrap<int>> Insert([FromBody]Student student)
+        [Route("query-by-id")]
+        [HttpGet("{id}")]
+        public async Task<ResponseMessageWrap<Student>> QueryById(long id)
         {
-            return new ResponseMessageWrap<int>
+            var student = await _studentService.Get(id);
+            if (student == null)
             {
-                Body = await _studentService.Add(student)
+                throw new APIException("404", $"未查询到数据id[{id}]");
+            }
+            return new ResponseMessageWrap<Student>
+            {
+                Body = student
             };
         }
-        //[HttpPost]
-        //public ResponseMessageWrap<int> DeleteById([FromBody]int id)
-        //{
-        //    return new ResponseMessageWrap<int>
-        //    {
-        //        Body = _studentService.DeleteById(id)
-        //    };
-        //}
-        //[HttpPost]
-        //public ResponseMessageWrap<int> Update([FromBody]ReportView reportView)
-        //{
-        //    return new ResponseMessageWrap<int>
-        //    {
-        //        Body = _studentService.Update(reportView)
-        //    };
-        //}
 
-        //[HttpPost]
-        //public ResponseMessageWrap<StudentViewModel> GetById([FromBody]int id)
-        //{
-        //    var reportView = _studentService.GetById(id);
-        //    return new ResponseMessageWrap<ReportView>
-        //    {
-        //        Body = reportView
-        //    };
-        //}
-        //[HttpPost]
-        //public ResponseMessageWrap<QueryResponse<StudentViewModel>> Query([FromBody]QueryRequest reqMsg)
-        //{
-        //    var list = _studentService.Query(reqMsg);
-        //    return new ResponseMessageWrap<QueryResponse<ReportView>>
-        //    {
-        //        Body = new QueryResponse<ReportView>
-        //        {
-        //            List = list
-        //        }
-        //    };
-        //}
-        //[HttpPost]
-        //public ResponseMessageWrap<QueryByPageResponse<StudentViewModel>> QueryByPage([FromBody]QueryByPageRequest reqMsg)
-        //{
-        //    var total = _studentService.GetRecord(reqMsg);
-        //    var list = _studentService.QueryByPage(reqMsg);
-        //    return new ResponseMessageWrap<QueryByPageResponse<ReportView>>
-        //    {
-        //        Body = new QueryByPageResponse<ReportView>
-        //        {
-        //            Total = total,
-        //            List = list
-        //        }
-        //    };
-        //}
+        [Route("add")]
+        [HttpPost]
+        public async Task<ResponseMessageWrap<bool>> Add([FromBody]Student entity)
+        {
+            return new ResponseMessageWrap<bool>
+            {
+                Body = await _studentService.Add(entity)
+            };
+        }
+
+        [Route("update")]
+        [HttpPut("{id}")]
+        public async Task<ResponseMessageWrap<bool>> Update(long id, Student entity)
+        {
+            if (id != entity.Id)
+            {
+                throw new APIException("400", $"值不匹配id[{id}]");
+            }
+            return new ResponseMessageWrap<bool>
+            {
+                Body = await _studentService.Update(entity)
+            };
+        }
+
+        [Route("delete-by-id")]
+        [HttpDelete("{id}")]
+        public async Task<ResponseMessageWrap<bool>> DeleteById(long id)
+        {
+            var student = await _studentService.Get(id);
+            if (student == null)
+            {
+                throw new APIException("404", $"未查询到数据id[{id}]");
+            }
+            return new ResponseMessageWrap<bool>
+            {
+                Body = await _studentService.Delete(student)
+            };
+        }
+
+        [Route("query-by-page")]
+        [HttpPost]
+        public async Task<ResponseMessageWrap<QueryResponseByPage<Student>>> QueryByPage([FromBody]QueryRequestByPage reqMsg)
+        {
+            var pages = await _studentService.GetListPaged(reqMsg);
+            return new ResponseMessageWrap<QueryResponseByPage<Student>>
+            {
+                Body = pages
+            };
+        }
     }
 }

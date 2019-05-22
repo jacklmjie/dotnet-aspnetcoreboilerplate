@@ -8,4 +8,8 @@
     <Folder Include="ViewModel\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Core.Common\Core.Common.csproj" />
+  </ItemGroup>
+
 </Project>

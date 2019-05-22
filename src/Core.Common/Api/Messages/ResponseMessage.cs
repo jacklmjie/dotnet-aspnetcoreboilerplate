@@ -1,6 +1,6 @@
 using System;
 
-namespace Core.Common.Messages
+namespace Core.Common
 {
     public class ResponseMessage : ResponseMessageWrap<object>
     {

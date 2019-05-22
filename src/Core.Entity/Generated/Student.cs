@@ -1,4 +1,4 @@
-﻿using Dapper.Contrib.Extensions;
+﻿using Dapper;
 
 namespace Core.Entity
 {

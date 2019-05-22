@@ -5,7 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Core.Common\Core.Common.csproj" />
     <ProjectReference Include="..\Core.Entity\Core.Entity.csproj" />
+    <ProjectReference Include="..\Core.Models\Core.Models.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Core.Common.Exceptions
+namespace Core.Common
 {
     public class APIException : Exception
     {

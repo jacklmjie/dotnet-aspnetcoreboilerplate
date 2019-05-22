@@ -1,4 +1,4 @@
-using Core.Common.Messages;
+using Core.Common;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
