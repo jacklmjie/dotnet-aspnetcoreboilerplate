@@ -5,6 +5,6 @@
         /// <summary>
         /// 班级编号
         /// </summary>
-        public int ClassRoom { get; set; }
+        public int ClassRoomId { get; set; }
     }
 }

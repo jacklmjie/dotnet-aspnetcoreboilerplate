@@ -19,11 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Mapping\Model\" />
-    <Folder Include="Mapping\ViewModel\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Dapper.Contrib" Version="1.60.1" />
   </ItemGroup>
 

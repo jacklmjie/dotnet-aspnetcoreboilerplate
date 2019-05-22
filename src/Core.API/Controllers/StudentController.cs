@@ -2,23 +2,29 @@
 using Core.Entity;
 using Core.IService;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
 
 namespace Core.API.Controllers
 {
     [Route("api/[controller]")]
     public class StudentController : ControllerBase
     {
+        private readonly ILogger<StudentController> _logger;
         private readonly IStudentService _studentService;
-        public StudentController(IStudentService studentService)
+        public StudentController(ILogger<StudentController> logger,
+            IStudentService studentService)
         {
+            _logger = logger;
             _studentService = studentService;
         }
+
         [HttpPost]
-        public ResponseMessageWrap<int> Insert([FromBody]Student student)
+        public async Task<ResponseMessageWrap<int>> Insert([FromBody]Student student)
         {
             return new ResponseMessageWrap<int>
             {
-                Body = _studentService.Add(student)
+                Body = await _studentService.Add(student)
             };
         }
         //[HttpPost]

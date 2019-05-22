@@ -10,4 +10,8 @@
     <ProjectReference Include="..\Core.IService\Core.IService.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Mapping\" />
+  </ItemGroup>
+
 </Project>

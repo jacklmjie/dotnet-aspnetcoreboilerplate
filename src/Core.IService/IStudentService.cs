@@ -1,11 +1,10 @@
 ﻿using Core.Entity;
+using System.Threading.Tasks;
 
 namespace Core.IService
 {
     public interface IStudentService
     {
-        int Add(Student student);
-
-        bool AddUnit(Student student);
+        Task<int> Add(Student entity);
     }
 }

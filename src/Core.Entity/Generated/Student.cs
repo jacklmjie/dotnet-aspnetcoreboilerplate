@@ -5,7 +5,7 @@ namespace Core.Entity
     /// <summary>
     /// 学生
     /// </summary>
-    [Table("ClassRoom")]
+    [Table("Student")]
     public partial class Student
     {
         /// <summary>

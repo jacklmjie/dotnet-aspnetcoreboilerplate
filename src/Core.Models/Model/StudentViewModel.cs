@@ -1,6 +1,6 @@
-﻿namespace Core.Models.ViewModel
+﻿namespace Core.Models
 {
-    public class StudentViewModel
+    public class StudentModel
     {
         /// <summary>
         /// 姓名

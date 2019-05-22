@@ -1,17 +1,13 @@
-﻿using Core.IRepository;
-using Core.IService;
-using Core.Repository;
-using Core.Service;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SmartSql.Starter.API.Filters;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 
 namespace Core.API
@@ -33,31 +29,42 @@ namespace Core.API
                 options.Filters.Add<GlobalExceptionFilter>();
                 options.Filters.Add<GlobalValidateModelFilter>();
             }).SetCompatibilityVersion(CompatibilityVersion.Latest);
-            //var Connection = Configuration.GetConnectionString("DbContext");
-            services.AddScoped<IStudentRepository, StudentRepository>();
-            services.AddScoped<IStudentService, StudentService>();
-            //RegisterRepository(services);
-            //RegisterService(services);
+            RegisterRepository(services);
+            RegisterService(services);
             RegisterSwagger(services);
         }
 
         private void RegisterRepository(IServiceCollection services)
         {
             var assembly = Assembly.Load("Core.Service");
-            var allTypes = assembly.GetTypes();
+            var allTypes = assembly.GetTypes().Where(t =>
+            t.GetTypeInfo().IsClass &&
+            !t.GetTypeInfo().IsAbstract &&
+            t.GetTypeInfo().Name.EndsWith("Service"));
             foreach (var type in allTypes)
             {
-                services.AddScoped(type);
+                var types = type.GetInterfaces();
+                foreach (var p in types)
+                {
+                    services.AddScoped(p, type);
+                }
             }
         }
 
         private void RegisterService(IServiceCollection services)
         {
             var assembly = Assembly.Load("Core.Repository");
-            var allTypes = assembly.GetTypes();
+            var allTypes = assembly.GetTypes().Where(t =>
+            t.GetTypeInfo().IsClass &&
+            !t.GetTypeInfo().IsAbstract &&
+            t.GetTypeInfo().Name.EndsWith("Repository"));
             foreach (var type in allTypes)
             {
-                services.AddScoped(type);
+                var types = type.GetInterfaces();
+                foreach (var p in types)
+                {
+                    services.AddScoped(p, type);
+                }
             }
         }
 

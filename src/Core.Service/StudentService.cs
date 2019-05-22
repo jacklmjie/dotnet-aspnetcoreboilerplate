@@ -1,6 +1,7 @@
 ﻿using Core.Entity;
 using Core.IRepository;
 using Core.IService;
+using System.Threading.Tasks;
 
 namespace Core.Service
 {
@@ -15,21 +16,9 @@ namespace Core.Service
             _studentRepository = studentRepository;
         }
 
-        public int Add(Student student)
+        public async Task<int> Add(Student entity)
         {
-            //TODO:把StudentViewModel映射到Student
-            var model = new Student() { Name = "test", Age = 1, Sex = 0, ClassRoom = 1 };
-            var task =  _studentRepository.Add(model);
-            task.Wait();
-            return task.Result;
-        }
-
-        public bool AddUnit(Student student)
-        {
-            var model = new Student();
-            _studentRepository.Add(model);
-            _studentRepository.Add(model);
-            return true;
+            return await _studentRepository.Add(entity);
         }
     }
 }
