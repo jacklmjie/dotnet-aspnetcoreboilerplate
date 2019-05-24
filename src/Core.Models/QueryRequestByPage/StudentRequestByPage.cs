@@ -1,6 +1,6 @@
 ﻿using Core.Common;
 
-namespace Core.Models.RequestByPage
+namespace Core.Models
 {
     public class StudentRequestByPage : QueryRequestByPage
     {

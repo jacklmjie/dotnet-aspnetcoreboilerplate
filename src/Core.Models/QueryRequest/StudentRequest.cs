@@ -1,4 +1,4 @@
-﻿namespace Core.Models.Request
+﻿namespace Core.Models
 {
     public class StudentRequest
     {

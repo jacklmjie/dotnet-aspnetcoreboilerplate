@@ -1,6 +1,7 @@
 ﻿using Core.Common;
 using Core.Entity;
 using Core.IService;
+using Core.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
@@ -19,8 +20,7 @@ namespace Core.API.Controllers
             _studentService = studentService;
         }
 
-        [Route("query-by-id")]
-        [HttpGet("{id}")]
+        [Route("query-by-id"), HttpGet]
         public async Task<ResponseMessageWrap<Student>> QueryById(long id)
         {
             var student = await _studentService.Get(id);
@@ -34,18 +34,16 @@ namespace Core.API.Controllers
             };
         }
 
-        [Route("add")]
-        [HttpPost]
-        public async Task<ResponseMessageWrap<bool>> Add([FromBody]Student entity)
+        [Route("add"),HttpPost]
+        public async Task<ResponseMessageWrap<bool>> Add([FromBody]StudentModel model)
         {
             return new ResponseMessageWrap<bool>
             {
-                Body = await _studentService.Add(entity)
+                Body = await _studentService.Add(model)
             };
         }
 
-        [Route("update")]
-        [HttpPut("{id}")]
+        [Route("update"),HttpPut]
         public async Task<ResponseMessageWrap<bool>> Update(long id, Student entity)
         {
             if (id != entity.Id)
@@ -58,8 +56,7 @@ namespace Core.API.Controllers
             };
         }
 
-        [Route("delete-by-id")]
-        [HttpDelete("{id}")]
+        [Route("delete-by-id"),HttpDelete]
         public async Task<ResponseMessageWrap<bool>> DeleteById(long id)
         {
             var student = await _studentService.Get(id);

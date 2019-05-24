@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AutoMapper;
+using Core.Mapper;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -31,6 +33,7 @@ namespace Core.API
             }).SetCompatibilityVersion(CompatibilityVersion.Latest);
             RegisterRepository(services);
             RegisterService(services);
+            RegisterMapping(services);
             RegisterSwagger(services);
         }
 
@@ -66,6 +69,24 @@ namespace Core.API
                     services.AddScoped(p, type);
                 }
             }
+        }
+
+        private void RegisterMapping(IServiceCollection services)
+        {
+            var assembly = Assembly.Load("Core.Mapper");
+            var allTypes = assembly.GetTypes().Where(t =>
+            t.GetTypeInfo().IsClass &&
+            !t.GetTypeInfo().IsAbstract &&
+            t.GetTypeInfo().Name.EndsWith("Profile"));
+            AutoMapper.IConfigurationProvider config = new MapperConfiguration(cfg =>
+            {
+                foreach (var type in allTypes)
+                {
+                    cfg.AddProfile(type);
+                }
+            });
+            services.AddSingleton(config);
+            services.AddScoped<IMapper, AutoMapper.Mapper>();
         }
 
         private void RegisterSwagger(IServiceCollection services)

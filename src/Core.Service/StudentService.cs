@@ -1,35 +1,40 @@
-﻿using Core.Common;
+﻿using AutoMapper;
+using Core.Common;
 using Core.Entity;
 using Core.IRepository;
 using Core.IService;
+using Core.Models;
 using System.Threading.Tasks;
 
 namespace Core.Service
 {
-    public class StudentService : IStudentService
+    public class StudentService : MappingService, IStudentService
     {
         private readonly IStudentRepository _studentRepository;
         private readonly IClassRoomRepository _classRoomRepository;
-        public StudentService(IStudentRepository studentRepository,
-        IClassRoomRepository classRoomRepository)
+
+        public StudentService(IMapper mapper,
+        IStudentRepository studentRepository,
+        IClassRoomRepository classRoomRepository) : base(mapper)
         {
             _classRoomRepository = classRoomRepository;
             _studentRepository = studentRepository;
         }
 
-        public async Task<bool> Add(Student entity)
+        public async Task<bool> Add(StudentModel model)
         {
+            var entity = _mapper.Map<StudentModel, Student>(model);
             return await _studentRepository.Add(entity);
         }
 
-        public async Task<bool> Delete(Student entity)
+        public async Task<bool> Delete(Student model)
         {
-            return await _studentRepository.Delete(entity);
+            return await _studentRepository.Delete(model);
         }
 
-        public async Task<bool> Update(Student entity)
+        public async Task<bool> Update(Student model)
         {
-            return await _studentRepository.Update(entity);
+            return await _studentRepository.Update(model);
         }
 
         public async Task<Student> Get(long Id)
@@ -41,7 +46,7 @@ namespace Core.Service
         {
             var count = await _studentRepository.GetCount(reqMsg);
             var list = await _studentRepository.GetListPaged(reqMsg);
-            return QueryResponseByPage<Student>.Create(count,list, reqMsg);
+            return QueryResponseByPage<Student>.Create(count, list, reqMsg);
         }
     }
 }

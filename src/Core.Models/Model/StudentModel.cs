@@ -15,7 +15,7 @@ namespace Core.Models
         /// 性别
         /// </summary>
         [Display(Name = "性别")]
-        [Range(1, 2, ErrorMessage = "{0}格式不正确")]
+        [Range(0, 1, ErrorMessage = "{0}格式不正确")]
         public int Sex { get; set; }
         /// <summary>
         /// 年龄
