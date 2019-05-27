@@ -1,5 +1,9 @@
 ﻿using AutoMapper;
-using Core.Mapper;
+using EasyCaching.Core;
+using EasyCaching.Core.Configurations;
+using EasyCaching.Interceptor.AspectCore;
+using EasyCaching.Redis;
+using EasyCaching.Serialization.Json;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -35,6 +39,18 @@ namespace Core.API
             RegisterService(services);
             RegisterMapping(services);
             RegisterSwagger(services);
+            services.AddEasyCaching(option =>
+            {
+                //option.UseRedis(config =>
+                //{
+                //    config.DBConfig.Endpoints.Add(new ServerEndPoint("127.0.0.1", 6379));
+                //}, "redis1").WithJson();
+                option.UseRedis(Configuration, "redis2", "easycaching:redis").WithJson();
+            });
+            services.ConfigureAspectCoreInterceptor(options =>
+            {
+                options.CacheProviderName = "redis2";
+            });
         }
 
         private void RegisterRepository(IServiceCollection services)
