@@ -7,7 +7,7 @@ namespace Core.IService
 {
     public interface IStudentService
     {
-        Task<bool> Add(StudentModel model);
+        Task<int?> Add(StudentModel model);
 
         Task<bool> Delete(Student model);
 

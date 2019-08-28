@@ -8,7 +8,7 @@ namespace Core.IRepository
 {
     public interface IStudentRepository
     {
-        Task<bool> Add(Student entity);
+        Task<int?> Add(Student entity);
 
         [EasyCachingEvict(IsBefore = true, CacheKeyPrefix = "AspectCore")]
         Task<bool> Delete(Student entity);

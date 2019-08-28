@@ -21,7 +21,7 @@ namespace Core.Service
             _studentRepository = studentRepository;
         }
 
-        public async Task<bool> Add(StudentModel model)
+        public async Task<int?> Add(StudentModel model)
         {
             var entity = _mapper.Map<StudentModel, Student>(model);
             return await _studentRepository.Add(entity);

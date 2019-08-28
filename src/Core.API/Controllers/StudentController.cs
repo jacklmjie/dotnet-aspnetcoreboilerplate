@@ -2,6 +2,7 @@
 using Core.Entity;
 using Core.IService;
 using Core.Models;
+using Core.Repository.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
@@ -12,11 +13,14 @@ namespace Core.API.Controllers
     public class StudentController : ControllerBase
     {
         private readonly ILogger<StudentController> _logger;
+        private readonly IUnitOfWorkFactory _uowFactory;
         private readonly IStudentService _studentService;
         public StudentController(ILogger<StudentController> logger,
+            IUnitOfWorkFactory unitOfWorkFactory,
             IStudentService studentService)
         {
             _logger = logger;
+            _uowFactory = unitOfWorkFactory;
             _studentService = studentService;
         }
 
@@ -34,16 +38,22 @@ namespace Core.API.Controllers
             };
         }
 
-        [Route("add"),HttpPost]
+        [Route("add"), HttpPost]
         public async Task<ResponseMessageWrap<bool>> Add([FromBody]StudentModel model)
         {
+            using (var uow = _uowFactory.Create())
+            {
+                var id = await _studentService.Add(model);
+                uow.SaveChanges();
+            }
+
             return new ResponseMessageWrap<bool>
             {
-                Body = await _studentService.Add(model)
+                Body = true
             };
         }
 
-        [Route("update"),HttpPut]
+        [Route("update"), HttpPut]
         public async Task<ResponseMessageWrap<bool>> Update(long id, Student entity)
         {
             if (id != entity.Id)
@@ -56,7 +66,7 @@ namespace Core.API.Controllers
             };
         }
 
-        [Route("delete-by-id"),HttpDelete]
+        [Route("delete-by-id"), HttpDelete]
         public async Task<ResponseMessageWrap<bool>> DeleteById(long id)
         {
             var student = await _studentService.Get(id);

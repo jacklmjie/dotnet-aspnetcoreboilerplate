@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
+using Core.Repository.Common;
+using Core.Repository.Infrastructure.Data;
 using EasyCaching.Core;
-using EasyCaching.Core.Configurations;
 using EasyCaching.Interceptor.AspectCore;
 using EasyCaching.Redis;
 using EasyCaching.Serialization.Json;
@@ -30,6 +31,10 @@ namespace Core.API
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDapperDBContext<TestDBContext>(options =>
+            {
+                options.Configuration = @"server=127.0.0.1;database=test;uid=root;pwd=123456;SslMode=none;";
+            });
             services.AddMvc(options =>
             {
                 options.Filters.Add<GlobalExceptionFilter>();
@@ -41,10 +46,6 @@ namespace Core.API
             RegisterSwagger(services);
             services.AddEasyCaching(option =>
             {
-                //option.UseRedis(config =>
-                //{
-                //    config.DBConfig.Endpoints.Add(new ServerEndPoint("127.0.0.1", 6379));
-                //}, "redis1").WithJson();
                 option.UseRedis(Configuration, "redis2", "easycaching:redis").WithJson();
             });
             services.ConfigureAspectCoreInterceptor(options =>
@@ -65,7 +66,7 @@ namespace Core.API
                 var types = type.GetInterfaces();
                 foreach (var p in types)
                 {
-                    services.AddScoped(p, type);
+                    services.AddTransient(p, type);
                 }
             }
         }
@@ -82,7 +83,7 @@ namespace Core.API
                 var types = type.GetInterfaces();
                 foreach (var p in types)
                 {
-                    services.AddScoped(p, type);
+                    services.AddTransient(p, type);
                 }
             }
         }
