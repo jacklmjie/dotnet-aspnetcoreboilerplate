@@ -1,20 +1,20 @@
 ﻿using Core.Common;
-using Core.Entity;
 using Core.Models;
+using Core.Models.Identity.Entity;
 using System.Threading.Tasks;
 
 namespace Core.IService
 {
     public interface IStudentService
     {
-        Task<int?> Add(StudentModel model);
+        Task<long> Add(StudentDto dto);
 
-        Task<bool> Delete(Student model);
+        Task<bool> Delete(Student dto);
 
-        Task<bool> Update(Student model);
+        Task<bool> Update(Student dto);
 
         Task<Student> Get(long Id);
 
-        Task<QueryResponseByPage<Student>> GetListPaged(QueryRequestByPage reqMsg);
+        Task<QueryResponseByPage<Student>> GetListPaged(QueryRequestByPage dto);
     }
 }

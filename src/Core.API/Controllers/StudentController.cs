@@ -1,10 +1,13 @@
-﻿using Core.Common;
-using Core.Entity;
+﻿using Core.API.Options;
+using Core.Common;
 using Core.IService;
 using Core.Models;
+using Core.Models.Identity.Entity;
 using Core.Repository.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using System.ComponentModel;
 using System.Threading.Tasks;
 
 namespace Core.API.Controllers
@@ -13,13 +16,16 @@ namespace Core.API.Controllers
     public class StudentController : ControllerBase
     {
         private readonly ILogger<StudentController> _logger;
+        private JwtOption _jwtOption;
         private readonly IUnitOfWorkFactory _uowFactory;
         private readonly IStudentService _studentService;
         public StudentController(ILogger<StudentController> logger,
+            IOptions<JwtOption> jwtOption,
             IUnitOfWorkFactory unitOfWorkFactory,
             IStudentService studentService)
         {
             _logger = logger;
+            _jwtOption = jwtOption.Value;
             _uowFactory = unitOfWorkFactory;
             _studentService = studentService;
         }
@@ -39,11 +45,12 @@ namespace Core.API.Controllers
         }
 
         [Route("add"), HttpPost]
-        public async Task<ResponseMessageWrap<bool>> Add([FromBody]StudentModel model)
+        [Description("新增")]
+        public async Task<ResponseMessageWrap<bool>> Add([FromBody]StudentDto dto)
         {
             using (var uow = _uowFactory.Create())
             {
-                var id = await _studentService.Add(model);
+                var id = await _studentService.Add(dto);
                 uow.SaveChanges();
             }
 

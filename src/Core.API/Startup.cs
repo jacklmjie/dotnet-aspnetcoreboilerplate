@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Core.API.Options;
 using Core.Repository.Common;
 using Core.Repository.Infrastructure.Data;
 using EasyCaching.Core;
@@ -22,6 +23,7 @@ namespace Core.API
     public class Startup
     {
         const string SERVICE_NAME = "Core.API";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -35,6 +37,7 @@ namespace Core.API
             {
                 options.Configuration = @"server=127.0.0.1;database=test;uid=root;pwd=123456;SslMode=none;";
             });
+            services.Configure<JwtOption>(Configuration.GetSection("Jwt"));
             services.AddMvc(options =>
             {
                 options.Filters.Add<GlobalExceptionFilter>();
@@ -44,14 +47,7 @@ namespace Core.API
             RegisterService(services);
             RegisterMapping(services);
             RegisterSwagger(services);
-            services.AddEasyCaching(option =>
-            {
-                option.UseRedis(Configuration, "redis2", "easycaching:redis").WithJson();
-            });
-            services.ConfigureAspectCoreInterceptor(options =>
-            {
-                options.CacheProviderName = "redis2";
-            });
+            RegisterEasyCaching(services);
         }
 
         private void RegisterRepository(IServiceCollection services)
@@ -108,13 +104,14 @@ namespace Core.API
 
         private void RegisterSwagger(IServiceCollection services)
         {
+            var swaggerOption = Configuration.GetSection("Swagger").Get<SwaggerOption>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info
                 {
-                    Title = SERVICE_NAME,
-                    Version = "v1",
-                    Description = "https://github.com/jacklmjie/aspnetcoreboilerplate"
+                    Title = swaggerOption.Title,
+                    Version = swaggerOption.Version,
+                    Description = swaggerOption.Description
                 });
                 c.CustomSchemaIds((type) => type.FullName);
                 var filePath = Path.Combine(AppContext.BaseDirectory, $"{SERVICE_NAME}.xml");
@@ -122,6 +119,18 @@ namespace Core.API
                 {
                     c.IncludeXmlComments(filePath);
                 }
+            });
+        }
+
+        private void RegisterEasyCaching(IServiceCollection services)
+        {
+            services.AddEasyCaching(option =>
+            {
+                option.UseRedis(Configuration, "redis2", "EasyCaching:redis").WithJson();
+            });
+            services.ConfigureAspectCoreInterceptor(options =>
+            {
+                options.CacheProviderName = "redis2";
             });
         }
 
@@ -138,11 +147,12 @@ namespace Core.API
 
         private void ConfigureSwagger(IApplicationBuilder app)
         {
-            app.UseSwagger(c =>
+            var swaggerOption = Configuration.GetSection("Swagger").Get<SwaggerOption>();
+            if (!swaggerOption.Enabled)
             {
-
-            });
-            app.UseSwaggerUI(c =>
+                return;
+            }
+            app.UseSwagger().UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", SERVICE_NAME);
             });

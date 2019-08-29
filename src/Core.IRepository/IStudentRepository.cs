@@ -1,5 +1,5 @@
 ﻿using Core.Common;
-using Core.Entity;
+using Core.Models.Identity.Entity;
 using EasyCaching.Core.Interceptor;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -8,7 +8,7 @@ namespace Core.IRepository
 {
     public interface IStudentRepository
     {
-        Task<int?> Add(Student entity);
+        Task<long> Add(Student entity);
 
         [EasyCachingEvict(IsBefore = true, CacheKeyPrefix = "AspectCore")]
         Task<bool> Delete(Student entity);

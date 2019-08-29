@@ -1,7 +1,6 @@
 ﻿using Core.Common;
-using Core.Entity;
 using Core.IRepository;
-using Core.Repository.Infrastructure.Data;
+using Core.Models.Identity.Entity;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -9,45 +8,41 @@ namespace Core.Repository
 {
     public class StudentRepository : IStudentRepository
     {
-        private readonly DapperDBContext _context;
-        public StudentRepository(DapperDBContext context)
+        private readonly IRepository<Student, long> _repository;
+        public StudentRepository(IRepository<Student, long> repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
-        public async Task<int?> Add(Student entity)
+        public async Task<long> Add(Student entity)
         {
-            return await _context.InsertAsync(entity);
+            return await _repository.InsertAsync(entity);
         }
 
         public async Task<bool> Delete(Student entity)
         {
-            var id = await _context.DeleteAsync(entity);
-            return id > 0;
+            return await _repository.DeleteAsync(entity) > 0;
         }
 
         public async Task<bool> Update(Student entity)
         {
-            var id = await _context.UpdateAsync(entity);
-            return id > 0;
+            return await _repository.UpdateAsync(entity) > 0;
         }
 
         public async Task<Student> Get(long Id)
         {
-            return await _context.GetAsync<Student>(Id);
+            return await _repository.GetAsync(Id);
         }
 
-        public async Task<int> GetCount(QueryRequestByPage reqMsg)
+        public async Task<int> GetCount(QueryRequestByPage dto)
         {
-            return await _context.RecordCountAsync<Student>("where Name = @Name",
-                    new { Name = reqMsg.Keyword });
+            return await _repository.RecordCountAsync();
         }
 
-        public async Task<IEnumerable<Student>> GetListPaged(QueryRequestByPage reqMsg)
+        public async Task<IEnumerable<Student>> GetListPaged(QueryRequestByPage dto)
         {
-            return await _context.GetListPagedAsync<Student>(reqMsg.PageIndex, reqMsg.PageSize,
-                    "where Name = @Name", "Id desc",
-                    new { Name = reqMsg.Keyword });
+            return await _repository.GetListPagedAsync(dto.PageIndex, dto.PageSize,
+                    "", "Id desc");
         }
     }
 }

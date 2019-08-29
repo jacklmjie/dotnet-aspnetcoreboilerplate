@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Core.Common.Entity;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 
 namespace Core.Repository.Infrastructure.Data
@@ -21,6 +22,7 @@ namespace Core.Repository.Infrastructure.Data
             services.Configure(setupAction);
             services.AddScoped<DapperDBContext, T>();
             services.AddScoped<IUnitOfWorkFactory, DapperUnitOfWorkFactory>();
+            services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
 
             return services;
         }

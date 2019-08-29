@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Core.Common.Entity;
+using System.ComponentModel.DataAnnotations;
 
 namespace Core.Models
 {
-    public class StudentModel
+    public class StudentDto : IInputDto
     {
         /// <summary>
         /// 姓名

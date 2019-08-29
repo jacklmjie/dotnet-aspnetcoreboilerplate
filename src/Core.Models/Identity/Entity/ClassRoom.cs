@@ -1,18 +1,19 @@
-﻿using Dapper;
+﻿using Core.Common.Entity;
+using Dapper;
 
-namespace Core.Entity
+namespace Core.Models.Identity.Entity
 {
     /// <summary>
     ///班级
     /// </summary>
     [Table("ClassRoom")]
-    public class ClassRoom
+    public class ClassRoom : EntityBase<long>
     {
         /// <summary>
         /// 主键Id
         /// </summary>
         [Key]
-        public long Id { get; set; }
+        public override long Id { get; set; }
 
         /// <summary>
         /// 班级名称

@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using Core.Common;
-using Core.Entity;
 using Core.IRepository;
 using Core.IService;
 using Core.Models;
+using Core.Models.Identity.Entity;
 using System.Threading.Tasks;
 
 namespace Core.Service
@@ -21,20 +21,20 @@ namespace Core.Service
             _studentRepository = studentRepository;
         }
 
-        public async Task<int?> Add(StudentModel model)
+        public async Task<long> Add(StudentDto dto)
         {
-            var entity = _mapper.Map<StudentModel, Student>(model);
+            var entity = _mapper.Map<StudentDto, Student>(dto);
             return await _studentRepository.Add(entity);
         }
 
-        public async Task<bool> Delete(Student model)
+        public async Task<bool> Delete(Student dto)
         {
-            return await _studentRepository.Delete(model);
+            return await _studentRepository.Delete(dto);
         }
 
-        public async Task<bool> Update(Student model)
+        public async Task<bool> Update(Student dto)
         {
-            return await _studentRepository.Update(model);
+            return await _studentRepository.Update(dto);
         }
 
         public async Task<Student> Get(long Id)
@@ -42,11 +42,11 @@ namespace Core.Service
             return await _studentRepository.Get(Id);
         }
 
-        public async Task<QueryResponseByPage<Student>> GetListPaged(QueryRequestByPage reqMsg)
+        public async Task<QueryResponseByPage<Student>> GetListPaged(QueryRequestByPage dto)
         {
-            var count = await _studentRepository.GetCount(reqMsg);
-            var list = await _studentRepository.GetListPaged(reqMsg);
-            return QueryResponseByPage<Student>.Create(count, list, reqMsg);
+            var count = await _studentRepository.GetCount(dto);
+            var list = await _studentRepository.GetListPaged(dto);
+            return QueryResponseByPage<Student>.Create(count, list, dto);
         }
     }
 }

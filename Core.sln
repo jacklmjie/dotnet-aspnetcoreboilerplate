@@ -1,13 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.168
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29209.62
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{22724285-11CA-450E-91A0-991E85AD6D31}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Common", "src\Core.Common\Core.Common.csproj", "{F11CFD5E-7810-448D-BE67-599717D1919B}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Entity", "src\Core.Entity\Core.Entity.csproj", "{30D852F1-9555-408E-9F18-8864C49CCC66}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.IRepository", "src\Core.IRepository\Core.IRepository.csproj", "{D7D73B31-C322-4ED1-91ED-5FD7C1F2F953}"
 EndProject
@@ -23,7 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{FFA52D31-A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Models", "src\Core.Models\Core.Models.csproj", "{F3E57DA7-393E-463D-83A9-BA040EDDDFF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Mapper", "src\Core.AutoMapper\Core.Mapper.csproj", "{18EF2991-85F1-4BD3-9CF0-47A0A830F1CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Mapper", "src\Core.AutoMapper\Core.Mapper.csproj", "{18EF2991-85F1-4BD3-9CF0-47A0A830F1CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +33,6 @@ Global
 		{F11CFD5E-7810-448D-BE67-599717D1919B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F11CFD5E-7810-448D-BE67-599717D1919B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F11CFD5E-7810-448D-BE67-599717D1919B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{30D852F1-9555-408E-9F18-8864C49CCC66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{30D852F1-9555-408E-9F18-8864C49CCC66}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{30D852F1-9555-408E-9F18-8864C49CCC66}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{30D852F1-9555-408E-9F18-8864C49CCC66}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D7D73B31-C322-4ED1-91ED-5FD7C1F2F953}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D7D73B31-C322-4ED1-91ED-5FD7C1F2F953}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7D73B31-C322-4ED1-91ED-5FD7C1F2F953}.Release|Any CPU.ActiveCfg = Release|Any CPU

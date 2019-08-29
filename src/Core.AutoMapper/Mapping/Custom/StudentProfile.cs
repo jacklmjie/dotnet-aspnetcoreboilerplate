@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Core.Entity;
 using Core.Models;
 
 namespace Core.Mapper
