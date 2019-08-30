@@ -1,8 +1,7 @@
-﻿using System;
-using Core.Common.Entity;
+﻿using Core.Common.Entity;
 using Dapper;
 
-namespace Core.Models.Identity.Entity
+namespace Core.Models.Identity.Entities
 {
     /// <summary>
     /// 用户表

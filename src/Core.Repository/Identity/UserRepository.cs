@@ -1,9 +1,11 @@
-﻿using Core.Models.Identity.Entity;
+﻿using Core.IRepository;
+using Core.Models.Identity.Entities;
+using Core.Repository.Infrastructure;
 using System.Threading.Tasks;
 
 namespace Core.Repository
 {
-    public class UserRepository
+    public class UserRepository: IUserRepository
     {
         private readonly IRepository<User, long> _repository;
         public UserRepository(IRepository<User, long> repository)

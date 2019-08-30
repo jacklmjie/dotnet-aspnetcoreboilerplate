@@ -1,4 +1,6 @@
-﻿namespace Core.Repository.Infrastructure.Data
+﻿using Core.IRepository;
+
+namespace Core.Repository.Infrastructure
 {
     public class DapperUnitOfWorkFactory : IUnitOfWorkFactory
     {

@@ -21,10 +21,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Core.AutoMapper\Core.Mapper.csproj" />
     <ProjectReference Include="..\Core.Common\Core.Common.csproj" />
+    <ProjectReference Include="..\Core.Contract\Core.Contract.csproj" />
     <ProjectReference Include="..\Core.IContract\Core.IContract.csproj" />
     <ProjectReference Include="..\Core.IRepository\Core.IRepository.csproj" />
-    <ProjectReference Include="..\Core.JWT\Core.JWT.csproj" />
     <ProjectReference Include="..\Core.Models\Core.Models.csproj" />
     <ProjectReference Include="..\Core.Repository\Core.Repository.csproj" />
   </ItemGroup>

@@ -1,8 +1,8 @@
-﻿using Core.Common.Entity;
+﻿using Core.IRepository;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace Core.Repository.Infrastructure.Data
+namespace Core.Repository.Infrastructure
 {
     public static class DapperDBContextServiceCollectionExtensions
     {

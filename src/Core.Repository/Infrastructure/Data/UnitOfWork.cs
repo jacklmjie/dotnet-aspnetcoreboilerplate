@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Core.IRepository;
+using System;
 
-namespace Core.Repository.Infrastructure.Data
+namespace Core.Repository.Infrastructure
 {
     public class UnitOfWork : IUnitOfWork
     {

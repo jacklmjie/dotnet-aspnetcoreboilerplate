@@ -4,6 +4,14 @@ namespace Core.Common
 {
     public class ResponseMessage : ResponseMessageWrap<object>
     {
+        public ResponseMessage()
+        {
+
+        }
+        public ResponseMessage(bool isSuccess)
+        {
+            this.IsSuccess = isSuccess;
+        }
     }
     public class ResponseMessageWrap<TBody>
     {

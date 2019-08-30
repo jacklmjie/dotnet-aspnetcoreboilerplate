@@ -1,12 +1,12 @@
 ﻿using Core.Common.Entity;
 using System;
 
-namespace Core.Models.Identity.Entity
+namespace Core.Models.Identity.Entities
 {
     /// <summary>
     /// 用户详情表
     /// </summary>
-    public class UserDetails : EntityBase<long>, ICreatedTime
+    public class UserDetail : EntityBase<long>, ICreatedTime
     {      
         /// <summary>
         /// 邮箱

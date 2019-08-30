@@ -1,4 +1,4 @@
-﻿namespace Core.API.Options
+﻿namespace Core.Common.Options
 {
     /// <summary>
     /// Swagger选项
@@ -13,12 +13,7 @@
         /// <summary>
         /// 获取或设置 版本
         /// </summary>
-        public string Version { get; set; }
-        
-        /// <summary>
-        /// 描述
-        /// </summary>
-        public string Description { get; set; }
+        public string Version { get; set; }      
 
         /// <summary>
         /// 获取或设置 是否启用

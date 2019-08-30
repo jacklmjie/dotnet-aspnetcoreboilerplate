@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Core.Repository.Infrastructure.Data
+namespace Core.Repository.Infrastructure
 {
     public abstract class DapperDBContext : IContext
     {

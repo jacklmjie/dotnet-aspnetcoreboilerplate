@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
 
-namespace Core.Repository.Infrastructure.Data
+namespace Core.Repository.Infrastructure
 {
     public class DapperDBContextOptions : IOptions<DapperDBContextOptions>
     {

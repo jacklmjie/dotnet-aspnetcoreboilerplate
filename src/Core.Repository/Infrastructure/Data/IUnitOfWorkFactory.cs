@@ -1,4 +1,4 @@
-﻿namespace Core.Repository.Infrastructure.Data
+﻿namespace Core.Repository.Infrastructure
 {
     public interface IUnitOfWorkFactory
     {

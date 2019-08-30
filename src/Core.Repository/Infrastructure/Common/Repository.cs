@@ -1,12 +1,11 @@
 ﻿using Core.Common.Entity;
 using Core.Common.Security.Claims;
-using Core.Repository.Infrastructure.Data;
 using System;
 using System.Collections.Generic;
 using System.Security.Principal;
 using System.Threading.Tasks;
 
-namespace Core.Repository
+namespace Core.Repository.Infrastructure
 {
     public class Repository<TEntity, TKey> : IRepository<TEntity, TKey>
        where TEntity : class, IEntity<TKey>

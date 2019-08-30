@@ -1,9 +1,8 @@
-﻿using Core.Repository.Infrastructure.Data;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using MySql.Data.MySqlClient;
 using System.Data;
 
-namespace Core.Repository.Common
+namespace Core.Repository.Infrastructure
 {
     public class TestDBContext : DapperDBContext
     {

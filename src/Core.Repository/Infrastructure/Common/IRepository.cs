@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Core.Repository
+namespace Core.Repository.Infrastructure
 {
     /// <summary>
     /// 定义实体仓储模型的数据标准操作

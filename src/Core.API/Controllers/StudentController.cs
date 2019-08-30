@@ -1,8 +1,9 @@
 ﻿using Core.Common;
 using Core.IContract;
+using Core.IRepository;
 using Core.Models;
 using Core.Models.Identity.Entity;
-using Core.Repository.Infrastructure.Data;
+using Core.Repository.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.ComponentModel;
@@ -41,7 +42,7 @@ namespace Core.API.Controllers
 
         [Route("add"), HttpPost]
         [Description("新增")]
-        public async Task<ResponseMessageWrap<bool>> Add([FromBody]StudentDto dto)
+        public async Task<ResponseMessage> Add([FromBody]StudentDto dto)
         {
             using (var uow = _uowFactory.Create())
             {
@@ -49,36 +50,36 @@ namespace Core.API.Controllers
                 uow.SaveChanges();
             }
 
-            return new ResponseMessageWrap<bool>
+            return new ResponseMessage
             {
-                Body = true
+                IsSuccess = true
             };
         }
 
         [Route("update"), HttpPut]
-        public async Task<ResponseMessageWrap<bool>> Update(long id, Student entity)
+        public async Task<ResponseMessage> Update(long id, Student entity)
         {
             if (id != entity.Id)
             {
                 throw new APIException("400", $"值不匹配id[{id}]");
             }
-            return new ResponseMessageWrap<bool>
+            return new ResponseMessage()
             {
-                Body = await _studentContract.Update(entity)
+                IsSuccess = await _studentContract.Update(entity)
             };
         }
 
         [Route("delete-by-id"), HttpDelete]
-        public async Task<ResponseMessageWrap<bool>> DeleteById(long id)
+        public async Task<ResponseMessage> DeleteById(long id)
         {
             var student = await _studentContract.Get(id);
             if (student == null)
             {
                 throw new APIException("404", $"未查询到数据id[{id}]");
             }
-            return new ResponseMessageWrap<bool>
+            return new ResponseMessage()
             {
-                Body = await _studentContract.Delete(student)
+                IsSuccess = await _studentContract.Delete(student)
             };
         }
 

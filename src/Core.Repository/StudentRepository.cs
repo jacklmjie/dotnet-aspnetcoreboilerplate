@@ -1,6 +1,7 @@
 ﻿using Core.Common;
 using Core.IRepository;
 using Core.Models.Identity.Entity;
+using Core.Repository.Infrastructure;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

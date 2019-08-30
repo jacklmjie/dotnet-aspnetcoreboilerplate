@@ -1,4 +1,4 @@
-﻿using Core.Models.Identity.Entity;
+﻿using Core.Models.Identity.Entities;
 using System.Threading.Tasks;
 
 namespace Core.IContract
