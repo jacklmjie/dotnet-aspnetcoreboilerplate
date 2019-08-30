@@ -1,11 +1,11 @@
 ﻿using EasyCaching.Core;
 
-namespace Core.Service
+namespace Core.Contract
 {
-   public abstract class RedisCachingService
+   public abstract class RedisCachingContract
     {
         public readonly IRedisCachingProvider _redisCachingProvider;
-        public RedisCachingService(IEasyCachingProviderFactory factory)
+        public RedisCachingContract(IEasyCachingProviderFactory factory)
         {
             _redisCachingProvider = factory.GetRedisProvider("redis2");
         }

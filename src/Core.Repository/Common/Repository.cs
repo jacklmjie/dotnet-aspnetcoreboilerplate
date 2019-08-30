@@ -44,6 +44,11 @@ namespace Core.Repository
             return await _context.GetAsync<TEntity>(id);
         }
 
+        public async Task<TEntity> QuerySingleOrDefaultAsync(string sql, object param = null)
+        {
+            return await _context.QuerySingleOrDefaultAsync<TEntity>(sql, param);
+        }
+
         public async Task<IEnumerable<TEntity>> GetListPagedAsync(int pageNumber, int rowsPerPage, string conditions, string orderby, object parameters = null)
         {
             return await _context.GetListPagedAsync<TEntity>(pageNumber, rowsPerPage, conditions, orderby, parameters);

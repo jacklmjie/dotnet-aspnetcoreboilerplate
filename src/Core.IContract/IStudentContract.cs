@@ -3,9 +3,9 @@ using Core.Models;
 using Core.Models.Identity.Entity;
 using System.Threading.Tasks;
 
-namespace Core.IService
+namespace Core.IContract
 {
-    public interface IStudentService
+    public interface IStudentContract
     {
         Task<long> Add(StudentDto dto);
 

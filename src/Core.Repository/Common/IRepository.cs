@@ -21,6 +21,8 @@ namespace Core.Repository
 
         Task<TEntity> GetAsync(object id);
 
+        Task<TEntity> QuerySingleOrDefaultAsync(string sql, object param = null);
+
         Task<IEnumerable<TEntity>> GetListPagedAsync(int pageNumber, int rowsPerPage, string conditions, string orderby, object parameters = null);
 
         Task<int> RecordCountAsync(string conditions = "", object parameters = null);

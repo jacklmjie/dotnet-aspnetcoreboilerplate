@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core.AutoMapper\Core.Mapper.csproj" />
+    <ProjectReference Include="..\Core.IRepository\Core.IRepository.csproj" />
+    <ProjectReference Include="..\Core.IService\Core.IContract.csproj" />
+  </ItemGroup>
+
+</Project>

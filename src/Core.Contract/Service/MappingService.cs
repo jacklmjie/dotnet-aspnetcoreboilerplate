@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 
-namespace Core.Service
+namespace Core.Contract
 {
-    public abstract class MappingService
+    public abstract class MappingContract
     {
         public readonly IMapper _mapper;
-        public MappingService(IMapper mapper)
+        public MappingContract(IMapper mapper)
         {
             _mapper = mapper;
         }

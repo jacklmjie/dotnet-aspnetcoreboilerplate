@@ -1,12 +1,10 @@
-﻿using Core.API.Options;
-using Core.Common;
-using Core.IService;
+﻿using Core.Common;
+using Core.IContract;
 using Core.Models;
 using Core.Models.Identity.Entity;
 using Core.Repository.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using System.ComponentModel;
 using System.Threading.Tasks;
 
@@ -16,24 +14,21 @@ namespace Core.API.Controllers
     public class StudentController : ControllerBase
     {
         private readonly ILogger<StudentController> _logger;
-        private JwtOption _jwtOption;
         private readonly IUnitOfWorkFactory _uowFactory;
-        private readonly IStudentService _studentService;
+        private readonly IStudentContract _studentContract;
         public StudentController(ILogger<StudentController> logger,
-            IOptions<JwtOption> jwtOption,
             IUnitOfWorkFactory unitOfWorkFactory,
-            IStudentService studentService)
+            IStudentContract studentService)
         {
             _logger = logger;
-            _jwtOption = jwtOption.Value;
             _uowFactory = unitOfWorkFactory;
-            _studentService = studentService;
+            _studentContract = studentService;
         }
 
         [Route("query-by-id"), HttpGet]
         public async Task<ResponseMessageWrap<Student>> QueryById(long id)
         {
-            var student = await _studentService.Get(id);
+            var student = await _studentContract.Get(id);
             if (student == null)
             {
                 throw new APIException("404", $"未查询到数据id[{id}]");
@@ -50,7 +45,7 @@ namespace Core.API.Controllers
         {
             using (var uow = _uowFactory.Create())
             {
-                var id = await _studentService.Add(dto);
+                var id = await _studentContract.Add(dto);
                 uow.SaveChanges();
             }
 
@@ -69,21 +64,21 @@ namespace Core.API.Controllers
             }
             return new ResponseMessageWrap<bool>
             {
-                Body = await _studentService.Update(entity)
+                Body = await _studentContract.Update(entity)
             };
         }
 
         [Route("delete-by-id"), HttpDelete]
         public async Task<ResponseMessageWrap<bool>> DeleteById(long id)
         {
-            var student = await _studentService.Get(id);
+            var student = await _studentContract.Get(id);
             if (student == null)
             {
                 throw new APIException("404", $"未查询到数据id[{id}]");
             }
             return new ResponseMessageWrap<bool>
             {
-                Body = await _studentService.Delete(student)
+                Body = await _studentContract.Delete(student)
             };
         }
 
@@ -91,7 +86,7 @@ namespace Core.API.Controllers
         [HttpPost]
         public async Task<ResponseMessageWrap<QueryResponseByPage<Student>>> QueryByPage([FromBody]QueryRequestByPage reqMsg)
         {
-            var pages = await _studentService.GetListPaged(reqMsg);
+            var pages = await _studentContract.GetListPaged(reqMsg);
             return new ResponseMessageWrap<QueryResponseByPage<Student>>
             {
                 Body = pages

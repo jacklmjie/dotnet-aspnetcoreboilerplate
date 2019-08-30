@@ -52,11 +52,11 @@ namespace Core.API
 
         private void RegisterRepository(IServiceCollection services)
         {
-            var assembly = Assembly.Load("Core.Service");
+            var assembly = Assembly.Load("Core.Contract");
             var allTypes = assembly.GetTypes().Where(t =>
             t.GetTypeInfo().IsClass &&
             !t.GetTypeInfo().IsAbstract &&
-            t.GetTypeInfo().Name.EndsWith("Service"));
+            t.GetTypeInfo().Name.EndsWith("Contract"));
             foreach (var type in allTypes)
             {
                 var types = type.GetInterfaces();

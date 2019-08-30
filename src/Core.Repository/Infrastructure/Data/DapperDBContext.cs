@@ -103,6 +103,11 @@ namespace Core.Repository.Infrastructure.Data
             return await _connection.GetAsync<T>(id, _transaction, _commandTimeout);
         }
 
+        public async Task<T> QuerySingleOrDefaultAsync<T>(string sql, object param = null)
+        {
+            return await _connection.QuerySingleOrDefaultAsync<T>(sql, param, _transaction, _commandTimeout);
+        }
+
         public async Task<IEnumerable<T>> GetListPagedAsync<T>(int pageNumber, int rowsPerPage, string conditions, string orderby, object parameters = null)
         {
             return await _connection.GetListPagedAsync<T>(pageNumber, rowsPerPage, conditions, orderby, parameters, _transaction, _commandTimeout);

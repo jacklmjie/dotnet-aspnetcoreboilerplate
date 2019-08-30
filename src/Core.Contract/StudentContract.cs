@@ -1,23 +1,20 @@
 ﻿using AutoMapper;
 using Core.Common;
+using Core.IContract;
 using Core.IRepository;
-using Core.IService;
 using Core.Models;
 using Core.Models.Identity.Entity;
 using System.Threading.Tasks;
 
-namespace Core.Service
+namespace Core.Contract
 {
-    public class StudentService : MappingService, IStudentService
+    public class StudentService : MappingContract, IStudentContract
     {
         private readonly IStudentRepository _studentRepository;
-        private readonly IClassRoomRepository _classRoomRepository;
 
         public StudentService(IMapper mapper,
-        IStudentRepository studentRepository,
-        IClassRoomRepository classRoomRepository) : base(mapper)
+        IStudentRepository studentRepository) : base(mapper)
         {
-            _classRoomRepository = classRoomRepository;
             _studentRepository = studentRepository;
         }
 

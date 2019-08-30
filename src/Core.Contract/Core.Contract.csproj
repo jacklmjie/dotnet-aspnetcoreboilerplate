@@ -6,8 +6,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Core.AutoMapper\Core.Mapper.csproj" />
+    <ProjectReference Include="..\Core.IContract\Core.IContract.csproj" />
     <ProjectReference Include="..\Core.IRepository\Core.IRepository.csproj" />
-    <ProjectReference Include="..\Core.IService\Core.IService.csproj" />
   </ItemGroup>
 
 </Project>
