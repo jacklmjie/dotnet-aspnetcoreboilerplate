@@ -73,7 +73,7 @@ namespace Core.API
                 var types = type.GetInterfaces();
                 foreach (var p in types)
                 {
-                    services.AddTransient(p, type);
+                    services.AddScoped(p, type);
                 }
             }
         }
@@ -90,7 +90,7 @@ namespace Core.API
                 var types = type.GetInterfaces();
                 foreach (var p in types)
                 {
-                    services.AddTransient(p, type);
+                    services.AddScoped(p, type);
                 }
             }
         }
@@ -201,8 +201,8 @@ namespace Core.API
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
             ConfigureSwagger(app);
+            app.UseMvc();
         }
 
         private void ConfigureSwagger(IApplicationBuilder app)

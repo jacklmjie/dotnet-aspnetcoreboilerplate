@@ -43,7 +43,7 @@ namespace Core.API.Controllers
         /// <returns></returns>
         [Route("login"), HttpPost]
         [Description("用户登录")]
-        public async Task<ResponseMessage> Login(LoginDto dto)
+        public async Task<ResponseMessage> Login([FromBody]LoginDto dto)
         {
             var response = new ResponseMessage(false);
             var user = await _identityContract.GetUserByName(dto.UserName);
@@ -58,42 +58,6 @@ namespace Core.API.Controllers
                 return response;
             }
             string token = CreateJwtToken(user);
-            return new ResponseMessage()
-            {
-                Body = token
-            };
-        }
-
-        /// <summary>
-        /// 刷新Token
-        /// </summary>
-        /// <param name="dto"></param>
-        /// <returns></returns>
-        [Route("refresh-token"), HttpPost]
-        public async Task<ResponseMessage> RefreshToken([FromBody]RefreshTokenDto dto)
-        {
-            var response = new ResponseMessage(false);
-            if (!_cache.TryGetValue(dto.RefreshToken, out string userName))
-            {
-                response.Message = "Invalid refreshtoken. ";
-                return response;
-            }
-            if (!dto.UserName.Equals(userName))
-            {
-                response.Message = "Invalid userName.";
-                return response;
-            }
-            var user = await _identityContract.GetUserByName(dto.UserName);
-            if (user == null)
-            {
-                response.Message = "用户名不存在";
-                return response;
-            }
-            string token = CreateJwtToken(user);
-            if (!string.IsNullOrEmpty(token))
-            {
-                _cache.Remove(dto.RefreshToken);
-            }
             return new ResponseMessage()
             {
                 Body = token
@@ -126,18 +90,8 @@ namespace Core.API.Controllers
                 new Claim("NickName", user.NickName)
             };
 
-            var refreshToken = Guid.NewGuid().ToString();
-            _cache.Set(refreshToken, user.UserName, _jwtOption.RefreshValidFor);
-
             var token = JwtHelper.CreateToken(claims, _jwtOption);
-            var response = new
-            {
-                auth_token = token,
-                refresh_token = refreshToken,
-                expires_in = (int)_jwtOption.ValidFor.TotalSeconds,
-                token_type = "Bearer"
-            };
-            return JsonConvert.SerializeObject(response, new JsonSerializerSettings { Formatting = Formatting.Indented });
+            return token;
         }
     }
 }
