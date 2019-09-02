@@ -42,10 +42,10 @@ namespace Core.API
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddDapperDBContext<TestDBContext>(options =>
-            //{
-            //    options.Configuration = @"server=127.0.0.1;database=test;uid=root;pwd=123456;SslMode=none;";
-            //});
+            services.AddDapperDBContext<TestDBContext>(options =>
+            {
+                options.Configuration = Configuration["DbContexts:MySql:ConnectionString"]; ;
+            });
             services.Configure<SwaggerOption>(Configuration.GetSection("Swagger"));
             services.Configure<JwtOption>(Configuration.GetSection("Jwt"));
             services.AddMvc(options =>

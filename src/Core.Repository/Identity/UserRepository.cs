@@ -16,7 +16,7 @@ namespace Core.Repository
         public async Task<User> GetUserByName(string userName)
         {
             return await _repository.QuerySingleOrDefaultAsync(
-                "select Id,UserName,Password,NickName from User with(nolock)",
+                "select Id,UserName,Password,NickName from User",
                 new
                 {
                     userName

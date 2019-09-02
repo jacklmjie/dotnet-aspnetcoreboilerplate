@@ -43,7 +43,7 @@ namespace Core.API.Controllers
         /// <returns></returns>
         [Route("login"), HttpPost]
         [Description("用户登录")]
-        public async Task<ResponseMessage> Login([FromBody]LoginDto dto)
+        public async Task<ResponseMessage> Login(LoginDto dto)
         {
             var response = new ResponseMessage(false);
             var user = await _identityContract.GetUserByName(dto.UserName);

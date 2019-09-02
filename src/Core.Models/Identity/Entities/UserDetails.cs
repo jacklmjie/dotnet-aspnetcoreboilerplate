@@ -6,7 +6,7 @@ namespace Core.Models.Identity.Entities
     /// <summary>
     /// 用户详情表
     /// </summary>
-    public class UserDetail : EntityBase<long>, ICreatedTime
+    public class UserDetails : EntityBase<long>, ICreatedTime
     {      
         /// <summary>
         /// 邮箱
