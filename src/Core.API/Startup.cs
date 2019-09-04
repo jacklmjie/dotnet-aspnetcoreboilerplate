@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Core.Common;
 using Core.Common.Options;
 using Core.Models.Identity.Entities;
 using Core.Repository.Infrastructure;
@@ -16,7 +15,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.IdentityModel.Tokens;
-using SmartSql.Starter.API.Filters;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.Collections.Generic;
@@ -48,11 +46,22 @@ namespace Core.API
             });
             services.Configure<SwaggerOption>(Configuration.GetSection("Swagger"));
             services.Configure<JwtOption>(Configuration.GetSection("Jwt"));
-            services.AddMvc(options =>
-            {
-                options.Filters.Add<GlobalExceptionFilter>();
-                options.Filters.Add<GlobalValidateModelFilter>();
-            }).SetCompatibilityVersion(CompatibilityVersion.Latest);
+            services.AddMvc()
+                    .SetCompatibilityVersion(CompatibilityVersion.Latest)
+                    .ConfigureApiBehaviorOptions(options =>
+                     {
+                         //是否禁用multipart/form-data推断
+                         options.SuppressConsumesConstraintForFormFileParameters = true;
+                         //是否禁用绑定源推理
+                         options.SuppressInferBindingSourcesForParameters = false;
+                         //是否禁用 400自动验证
+                         options.SuppressModelStateInvalidFilter = false;
+                         //是否禁用 ProblemDetails 的自动创建
+                         //比如NotFound 的 HTTP 响应具有 404 状态代码和 ProblemDetails 正文
+                         options.SuppressMapClientErrors = true;
+                         //400 响应的默认响应类型为 ValidationProblemDetails，更改为true改为 SerializableError
+                         options.SuppressUseValidationProblemDetailsForInvalidModelStateResponses = false;
+                     });
             RegisterRepository(services);
             RegisterService(services);
             RegisterMapping(services);
@@ -123,7 +132,7 @@ namespace Core.API
                     ClaimsPrincipal principal = accessor?.HttpContext?.User;
                     if (principal != null && principal.Identity is ClaimsIdentity identity)
                     {
-                        PropertyInfo property = typeof(User).GetProperty("Id");
+                        PropertyInfo property = typeof(IdentityUser).GetProperty("Id");
                         if (property != null)
                         {
                             identity.AddClaim(new Claim("userIdTypeName", property.PropertyType.FullName));
@@ -144,7 +153,7 @@ namespace Core.API
                 string secret = jwtOption.Secret;
                 if (string.IsNullOrEmpty(secret))
                 {
-                    throw new APIException("500", "配置文件中配置的Jwt节点的Secret不能为空");
+                    throw new Exception("配置文件中配置的Jwt节点的Secret不能为空");
                 }
 
                 jwt.TokenValidationParameters = new TokenValidationParameters()

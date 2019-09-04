@@ -1,9 +1,6 @@
-﻿using System;
-using Core.Common;
-using Core.IContract;
+﻿using Core.IContract;
 using Core.Common.Options;
 using Core.Common.Identity;
-using System.ComponentModel;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -11,29 +8,30 @@ using Core.Models.Identity.Dtos;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Core.Models.Identity.Entities;
-using Microsoft.Extensions.Caching.Memory;
-using System.Linq;
-using Newtonsoft.Json;
 using Microsoft.AspNetCore.Authorization;
+using System.Linq;
 
 namespace Core.API.Controllers
 {
+    /// <summary>
+    /// 网站-认证
+    /// </summary>
     [Route("api/[controller]")]
+    [ApiController]
+    [ApiConventionType(typeof(MyAppConventions))]
     public class IdentityController : ControllerBase
     {
         private readonly ILogger<IdentityController> _logger;
         private readonly JwtOption _jwtOption;
         private readonly IIdentityContract _identityContract;
-        private readonly IMemoryCache _cache;
-        public IdentityController(ILogger<IdentityController> logger,
+        public IdentityController(
+            ILogger<IdentityController> logger,
             IOptions<JwtOption> jwtOption,
-            IIdentityContract identityContract,
-            IMemoryCache cache)
+            IIdentityContract identityContract)
         {
             _logger = logger;
             _jwtOption = jwtOption.Value;
             _identityContract = identityContract;
-            _cache = cache;
         }
 
         /// <summary>
@@ -41,36 +39,33 @@ namespace Core.API.Controllers
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        [Route("login"), HttpPost]
-        [Description("用户登录")]
-        public async Task<ResponseMessage> Login([FromBody]LoginDto dto)
+        [HttpPost("login")]
+        public async Task<ActionResult<string>> PostLogin(LoginDto dto)
         {
-            var response = new ResponseMessage(false);
             var user = await _identityContract.GetUserByName(dto.UserName);
             if (user == null)
             {
-                response.Message = "用户名不存在";
-                return response;
+                ModelState.AddModelError($"用户{dto.UserName}", "不存在");
+                return BadRequest(ModelState);
             }
             if (!user.Password.Equals(dto.Password))
             {
-                response.Message = "密码错误";
-                return response;
+                ModelState.AddModelError("密码", "错误");
+                return BadRequest(ModelState);
             }
             string token = CreateJwtToken(user);
-            return new ResponseMessage()
-            {
-                Body = token
-            };
+            return Ok(token);
         }
 
         /// <summary>
         /// 获取用户信息
         /// </summary>
         /// <returns></returns>
-        [Route("userinfo"), HttpPost]
+        [HttpGet("user-info")]
         [Authorize]
-        public IActionResult GetUserInfo()
+        //[ApiConventionMethod(typeof(MyAppConventions),
+        //                     nameof(MyAppConventions.Get))]
+        public ActionResult GetUserInfo()
         {
             var claimsIdentity = User.Identity as ClaimsIdentity;
             return Ok(claimsIdentity.Claims.ToList().Select(r => new { r.Type, r.Value }));
@@ -81,7 +76,7 @@ namespace Core.API.Controllers
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        private string CreateJwtToken(User user)
+        private string CreateJwtToken(IdentityUser user)
         {
             Claim[] claims =
             {

@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-using Core.Models;
-using Core.Models.Identity.Entity;
 
 namespace Core.Mapper
 {
@@ -11,7 +9,7 @@ namespace Core.Mapper
     {
         public MappingProfile()
         {
-            CreateMap<StudentDto, Student>();      
+            //CreateMap<StudentDto, Student>();      
         }
     }
 }

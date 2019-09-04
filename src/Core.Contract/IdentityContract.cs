@@ -14,7 +14,7 @@ namespace Core.Service
             _userRepository = userRepository;
         }
 
-        public async Task<User> GetUserByName(string userName)
+        public async Task<IdentityUser> GetUserByName(string userName)
         {
             return await _userRepository.GetUserByName(userName);
         }

@@ -5,6 +5,6 @@ namespace Core.IContract
 {
     public interface IIdentityContract
     {
-        Task<User> GetUserByName(string userName);
+        Task<IdentityUser> GetUserByName(string userName);
     }
 }

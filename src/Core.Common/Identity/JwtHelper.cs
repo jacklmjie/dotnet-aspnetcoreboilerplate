@@ -20,7 +20,7 @@ namespace Core.Common.Identity
             string secret = jwtOption.Secret;
             if (secret == null)
             {
-                throw new APIException("500", "创建JwtToken时Secret为空");
+                throw new Exception("创建JwtToken时Secret为空");
             }
             SecurityKey key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secret));
             SigningCredentials credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);

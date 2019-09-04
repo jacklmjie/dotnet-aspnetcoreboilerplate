@@ -7,6 +7,6 @@ namespace Core.IRepository
     public interface IUserRepository
     {
         [EasyCachingPut(CacheKeyPrefix = "AspectCore")]
-        Task<User> GetUserByName(string userName);
+        Task<IdentityUser> GetUserByName(string userName);
     }
 }

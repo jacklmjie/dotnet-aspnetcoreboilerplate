@@ -6,7 +6,7 @@ namespace Core.Models.Identity.Entities
     /// <summary>
     /// 用户表
     /// </summary>
-    public class User : EntityBase<long>
+    public class IdentityUser : EntityBase<long>
     {
         /// <summary>
         /// 主键
