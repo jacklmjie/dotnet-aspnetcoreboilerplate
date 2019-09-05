@@ -1,14 +1,16 @@
-﻿namespace Core.Models.Identity.Entities
+﻿using Core.Common.Entity;
+
+namespace Core.Models.Identity.Entities
 {
     /// <summary>
     /// 角色-权限表
     /// </summary>
-    public class IdentityRoleFunction
+    public class IdentityRoleFunction : EntityBase<int>
     {
         /// <summary>
         /// 主键
         /// </summary>
-        public int Id { get; set; }
+        public override int Id { get; set; }
 
         /// <summary>
         /// 角色Id

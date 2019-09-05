@@ -1,14 +1,16 @@
-﻿namespace Core.Models.Identity.Entities
+﻿using Core.Common.Entity;
+
+namespace Core.Models.Identity.Entities
 {
     /// <summary>
     /// 用户-角色表
     /// </summary>
-    public class IdentityUserRole
+    public class IdentityUserRole : EntityBase<long>
     {
         /// <summary>
         /// 主键
         /// </summary>
-        public int Id { get; set; }
+        public override long Id { get; set; }
 
         /// <summary>
         /// 用户Id

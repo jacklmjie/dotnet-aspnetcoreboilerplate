@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Folder Include="CacheKeyManage\" />
+    <Folder Include="Security\Functions\" />
   </ItemGroup>
 
   <ItemGroup>

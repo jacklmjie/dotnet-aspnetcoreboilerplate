@@ -11,7 +11,6 @@ namespace Core.Models.Identity.Entities
         /// <summary>
         /// 主键
         /// </summary>
-        [Key]
         public override long Id { get; set; }
 
         /// <summary>

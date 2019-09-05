@@ -5,8 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Systems\**" />
     <Compile Remove="ViewModel\**" />
+    <EmbeddedResource Remove="Systems\**" />
     <EmbeddedResource Remove="ViewModel\**" />
+    <None Remove="Systems\**" />
     <None Remove="ViewModel\**" />
   </ItemGroup>
 
@@ -16,7 +19,6 @@
 
   <ItemGroup>
     <Folder Include="Security\" />
-    <Folder Include="Systems\" />
   </ItemGroup>
 
   <ItemGroup>
