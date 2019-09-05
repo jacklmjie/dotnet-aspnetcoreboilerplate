@@ -8,9 +8,7 @@ namespace Core.API.Controllers
     /// <summary>
     /// 网站-通用
     /// </summary>
-    [Route("api/[controller]")]
-    [ApiController]
-    public class CommonController : ControllerBase
+    public class CommonController : ApiController
     {
         private readonly IVerifyCodeService _verifyCodeService;
 
@@ -24,8 +22,8 @@ namespace Core.API.Controllers
         /// 获取验证码图片
         /// </summary>
         /// <returns>验证码图片文件</returns>
-        [HttpGet]
-        public string VerifyCode()
+        [HttpGet("verify-code")]
+        public ActionResult<string> GetVerifyCode()
         {
             ValidateCoder coder = new ValidateCoder()
             {
@@ -46,8 +44,8 @@ namespace Core.API.Controllers
         /// <param name="code">验证码字符串</param>
         /// <param name="id">验证码编号</param>
         /// <returns>是否无效</returns>
-        [HttpGet]
-        public bool CheckVerifyCode(string code, string id)
+        [HttpGet("check-verify-code")]
+        public ActionResult<bool> CheckVerifyCode(string code, string id)
         {
             return _verifyCodeService.CheckCode(code, id, false);
         }

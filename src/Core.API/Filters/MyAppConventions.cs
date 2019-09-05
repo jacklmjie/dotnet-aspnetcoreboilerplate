@@ -33,6 +33,16 @@ namespace Core.API
         { }
 
         /// <summary>
+        /// Check约定 HttpGet
+        /// 命名规范Check+方法名
+        /// </summary>
+        [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Prefix)]
+        [ProducesDefaultResponseType]
+        [ProducesResponseType(200)]
+        public static void Check()
+        { }
+
+        /// <summary>
         /// 增约定 HttpPost
         /// 命名规范Create+方法名
         /// </summary>

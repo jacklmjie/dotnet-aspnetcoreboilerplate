@@ -16,21 +16,18 @@ namespace Core.API.Controllers
     /// <summary>
     /// 网站-认证
     /// </summary>
-    [Route("api/[controller]")]
-    [ApiController]
-    [ApiConventionType(typeof(MyAppConventions))]
-    public class IdentityController : ControllerBase
+    public class IdentityController : ApiController
     {
         private readonly ILogger<IdentityController> _logger;
-        private readonly JwtOption _jwtOption;
+        private readonly JwtOption _option;
         private readonly IIdentityContract _identityContract;
         public IdentityController(
             ILogger<IdentityController> logger,
-            IOptions<JwtOption> jwtOption,
+            IOptions<JwtOption> option,
             IIdentityContract identityContract)
         {
             _logger = logger;
-            _jwtOption = jwtOption.Value;
+            _option = option.Value;
             _identityContract = identityContract;
         }
 
@@ -85,7 +82,7 @@ namespace Core.API.Controllers
                 new Claim("NickName", user.NickName)
             };
 
-            var token = JwtHelper.CreateToken(claims, _jwtOption);
+            var token = JwtHelper.CreateToken(claims, _option);
             return token;
         }
     }
