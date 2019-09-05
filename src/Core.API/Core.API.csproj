@@ -30,8 +30,4 @@
     <ProjectReference Include="..\Core.Repository\Core.Repository.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Areas\" />
-  </ItemGroup>
-
 </Project>

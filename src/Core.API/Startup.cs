@@ -40,6 +40,7 @@ namespace Core.API
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddRouting(options => options.LowercaseUrls = true);
             services.AddDapperDBContext<TestDBContext>(options =>
             {
                 options.Configuration = Configuration["DbContexts:MySql:ConnectionString"]; ;

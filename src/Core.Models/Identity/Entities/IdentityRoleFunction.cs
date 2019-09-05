@@ -3,7 +3,7 @@
 namespace Core.Models.Identity.Entities
 {
     /// <summary>
-    /// 角色-权限表
+    /// 角色-功能表
     /// </summary>
     public class IdentityRoleFunction : EntityBase<int>
     {
