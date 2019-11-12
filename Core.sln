@@ -38,6 +38,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "User.API", "demo\User.API\U
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoSignalR", "demo\DemoSignalR\DemoSignalR.csproj", "{3E8A9E9C-E116-4FD2-BBC3-E86A4E71582F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoMongoDB", "demo\DemoMongoDB\DemoMongoDB.csproj", "{9C06A4A3-1B1C-4101-8258-C8800B0114E1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -84,6 +86,10 @@ Global
 		{3E8A9E9C-E116-4FD2-BBC3-E86A4E71582F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E8A9E9C-E116-4FD2-BBC3-E86A4E71582F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E8A9E9C-E116-4FD2-BBC3-E86A4E71582F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C06A4A3-1B1C-4101-8258-C8800B0114E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C06A4A3-1B1C-4101-8258-C8800B0114E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C06A4A3-1B1C-4101-8258-C8800B0114E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C06A4A3-1B1C-4101-8258-C8800B0114E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -99,6 +105,7 @@ Global
 		{DD74F8B8-B811-4285-9906-CD847E2D764D} = {22724285-11CA-450E-91A0-991E85AD6D31}
 		{2DE1C1C4-C65D-45B9-9FB3-438DCE40E00E} = {771949F3-4674-4B20-9D54-0445FC609324}
 		{3E8A9E9C-E116-4FD2-BBC3-E86A4E71582F} = {771949F3-4674-4B20-9D54-0445FC609324}
+		{9C06A4A3-1B1C-4101-8258-C8800B0114E1} = {771949F3-4674-4B20-9D54-0445FC609324}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {12C31BE3-8B81-4569-BA0C-C043E77C58D4}
