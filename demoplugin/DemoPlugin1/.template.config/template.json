@@ -1,0 +1,13 @@
+{
+  "author": "Lamond Lu", //作者必填
+  "classifications": [ "Web/Plugins" ], //模板分类必填
+  "name": "DemoPlugin1", //模板名称必填
+  "identity": "LamondDynamicPlugins", //模板的唯一名称可选
+  "shortName": "ldp", //模板简短名称必填
+  "tags": { //标签
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "DemoPlugin1", //指定字符串 dotnet new命令指定的-n参数值为新名称
+  "preferNameDirectory": true //是否生成相同名称的目录可选
+}
