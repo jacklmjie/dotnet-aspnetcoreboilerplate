@@ -11,6 +11,9 @@ using DynamicPlugins.Infrastructure;
 
 namespace DynamicPlugins.Data
 {
+    /// <summary>
+    /// 封装了插件包的相关操作
+    /// </summary>
     public class PluginPackage
     {
         private Stream _zipStream = null;
