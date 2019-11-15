@@ -52,6 +52,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demomicroservices", "demomi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "User.API", "demomicroservices\User.API\User.API.csproj", "{CF3AE109-1F4A-498F-A92C-C6A4F0C8E5D1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoPlugin2", "demoplugin\DemoPlugin2\DemoPlugin2.csproj", "{F4DFA07B-5DED-4E49-A4EB-306910B302E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -118,6 +120,10 @@ Global
 		{CF3AE109-1F4A-498F-A92C-C6A4F0C8E5D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF3AE109-1F4A-498F-A92C-C6A4F0C8E5D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF3AE109-1F4A-498F-A92C-C6A4F0C8E5D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4DFA07B-5DED-4E49-A4EB-306910B302E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4DFA07B-5DED-4E49-A4EB-306910B302E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4DFA07B-5DED-4E49-A4EB-306910B302E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4DFA07B-5DED-4E49-A4EB-306910B302E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -138,6 +144,7 @@ Global
 		{3BA664CB-B694-49CF-A8C3-59A10C07AD25} = {5CC22DB0-674E-4152-B5C4-5AE155FFECA8}
 		{EA46530D-E9CC-48E7-B8B4-E1D4F62B0BC0} = {5CC22DB0-674E-4152-B5C4-5AE155FFECA8}
 		{CF3AE109-1F4A-498F-A92C-C6A4F0C8E5D1} = {79D2370A-BF5A-428D-9640-331A038D457C}
+		{F4DFA07B-5DED-4E49-A4EB-306910B302E8} = {5CC22DB0-674E-4152-B5C4-5AE155FFECA8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {12C31BE3-8B81-4569-BA0C-C043E77C58D4}
