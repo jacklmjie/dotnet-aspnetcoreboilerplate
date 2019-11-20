@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Core.API.Filters;
 using Core.Common.Options;
 using Core.Models.Identity.Entities;
 using Core.Repository.Infrastructure;
@@ -47,7 +48,10 @@ namespace Core.API
             });
             services.Configure<SwaggerOption>(Configuration.GetSection("Swagger"));
             services.Configure<JwtOption>(Configuration.GetSection("Jwt"));
-            services.AddMvc()
+            services.AddMvc(options =>
+                    {
+                        options.Filters.Add<OperationCancelledExceptionFilter>();
+                    })
                     .SetCompatibilityVersion(CompatibilityVersion.Latest)
                     .ConfigureApiBehaviorOptions(options =>
                      {
