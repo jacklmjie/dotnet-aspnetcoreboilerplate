@@ -5,6 +5,6 @@ namespace User.API.Controllers
 {
     public class BaseController : ControllerBase
     {
-        public IdentityModel Identity => new IdentityModel() { UserId = 1, Name = "jack.li" };
+        protected UserIdentity UserIdentity => new UserIdentity() { UserId = 1, Name = "jack.li" };
     }
 }

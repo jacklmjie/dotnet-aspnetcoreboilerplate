@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using User.API.Data;
 using Microsoft.EntityFrameworkCore;
 using User.API.Entity.Models;
+using User.API.Filters;
 
 namespace User.API
 {
@@ -25,7 +26,10 @@ namespace User.API
             {
                 options.UseMySql(Configuration.GetConnectionString("MysqlUser"));
             });
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(typeof(GlobalExceptionFilter));
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
