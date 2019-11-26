@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using User.API.Data;
 using Microsoft.EntityFrameworkCore;
+using User.API.Entity.Models;
 
 namespace User.API
 {
@@ -52,7 +48,7 @@ namespace User.API
 
                 if (!userContext.Users.Any())
                 {
-                    userContext.Users.Add(new Models.AppUser() { Name = "jack.li" });
+                    userContext.Users.Add(new AppUser() { Name = "jack.li" });
                     userContext.SaveChanges();
                 }
             }

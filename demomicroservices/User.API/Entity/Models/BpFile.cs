@@ -1,11 +1,18 @@
 ﻿using System;
 
-namespace User.API.Models
+namespace User.API.Entity.Models
 {
     public class BpFile
     {
+        /// <summary>
+        /// 主键
+        /// </summary>
         public int Id { get; set; }
-        public int UserId { get; set; }
+
+        /// <summary>
+        /// 用户Id
+        /// </summary>
+        public int AppUserId { get; set; }
         /// <summary>
         /// 文件名称
         /// </summary>
@@ -21,6 +28,6 @@ namespace User.API.Models
         /// <summary>
         /// 创建时间
         /// </summary>
-        public DateTime CreateTime { get; set; }
+        public DateTime CreatedTime { get; set; }
     }
 }

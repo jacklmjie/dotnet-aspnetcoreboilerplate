@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace User.API.Models
+namespace User.API.Entity.Models
 {
     public class AppUser
     {

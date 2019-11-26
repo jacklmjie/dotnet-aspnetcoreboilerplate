@@ -1,9 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using User.API.Models;
+using User.API.Entity.Models;
 
 namespace User.API.Data
 {
@@ -29,15 +25,18 @@ namespace User.API.Data
             modelBuilder.Entity<UserTage>().Property(x => x.Tag).HasMaxLength(100);
             modelBuilder.Entity<UserTage>()
                 .ToTable("UserTages")
-                .HasKey(u => new { u.UserId, u.Tag });
+                .HasKey(u => new { u.AppUserId, u.Tag });
 
             modelBuilder.Entity<BpFile>()
-               .ToTable("UserTages")
+               .ToTable("BpFiles")
                .HasKey(u => u.Id);
 
             base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<AppUser> Users { get; set; }
+        public DbSet<BpFile> BpFiles { get; set; }
+        public DbSet<UserProperty> UserProperties { get; set; }
+        public DbSet<UserTage> UserTages { get; set; }
     }
 }
