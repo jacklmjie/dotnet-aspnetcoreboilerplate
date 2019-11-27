@@ -30,7 +30,7 @@ namespace User.API.Controllers
                 .SingleOrDefault(x => x.Id == UserIdentity.UserId);
 
             if (user == null)
-                throw new UserOperationException($"错误的用户上下文Id{UserIdentity.UserId}");
+                throw new UserOperationException($"错误的用户上下文Id={UserIdentity.UserId}");
 
             return Ok(user);
         }
