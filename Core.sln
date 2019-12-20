@@ -42,6 +42,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcGreeter", "demo\GrpcGre
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcGreeterClient", "demo\GrpcGreeterClient\GrpcGreeterClient.csproj", "{A91C0D5B-519F-43C0-AE54-6F5FD17657F7}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoDapper", "demo\DemoDapper\DemoDapper.csproj", "{2C57CD16-CB3D-45A1-942B-07C0F652103F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -96,6 +98,10 @@ Global
 		{A91C0D5B-519F-43C0-AE54-6F5FD17657F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A91C0D5B-519F-43C0-AE54-6F5FD17657F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A91C0D5B-519F-43C0-AE54-6F5FD17657F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C57CD16-CB3D-45A1-942B-07C0F652103F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C57CD16-CB3D-45A1-942B-07C0F652103F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C57CD16-CB3D-45A1-942B-07C0F652103F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C57CD16-CB3D-45A1-942B-07C0F652103F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -113,6 +119,7 @@ Global
 		{9C06A4A3-1B1C-4101-8258-C8800B0114E1} = {771949F3-4674-4B20-9D54-0445FC609324}
 		{2F2E4817-29F5-4B7A-A33E-B46E1F429313} = {771949F3-4674-4B20-9D54-0445FC609324}
 		{A91C0D5B-519F-43C0-AE54-6F5FD17657F7} = {771949F3-4674-4B20-9D54-0445FC609324}
+		{2C57CD16-CB3D-45A1-942B-07C0F652103F} = {771949F3-4674-4B20-9D54-0445FC609324}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {12C31BE3-8B81-4569-BA0C-C043E77C58D4}
