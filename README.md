@@ -1,5 +1,4 @@
 ### asp.net core template
-#### 个人学习demo
 ## 参考资料
  - DemoDapper [深入理解dapper](https://www.cnblogs.com/ITWeiHan/p/11614704.html)
  - DemoMongoDB [使用 MongoDB 的 Web API](https://docs.microsoft.com/zh-cn/aspnet/core/tutorials/first-mongo-app?view=aspnetcore-3.1&tabs=visual-studio)
