@@ -5,3 +5,4 @@
  - DemoSignalR [使用 JavaScript 的 SignalR](https://docs.microsoft.com/zh-cn/aspnet/core/tutorials/signalr?view=aspnetcore-3.1&tabs=visual-studio)
  - DemoGrpc [使用c#的grpc](https://docs.microsoft.com/zh-cn/aspnet/core/grpc/basics?view=aspnetcore-3.1)
 - [Web API 约定](https://docs.microsoft.com/zh-cn/aspnet/core/web-api/advanced/conventions?view=aspnetcore-2.2#create-web-api-conventions)
+- [session 实现原理](https://www.cnblogs.com/emrys5/p/aspnet-core-session.html)
