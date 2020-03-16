@@ -14,6 +14,11 @@ namespace Core.Models.Identity.Entities
         public override long Id { get; set; }
 
         /// <summary>
+        /// 获取或设置 用户编号
+        /// </summary>
+        public long UserId { get; set; }
+
+        /// <summary>
         /// 获取或设置 登录IP
         /// </summary>
         public string Ip { get; set; }
@@ -32,10 +37,5 @@ namespace Core.Models.Identity.Entities
         /// 获取或设置 创建时间
         /// </summary>
         public DateTime CreatedTime { get; set; }
-
-        /// <summary>
-        /// 获取或设置 用户编号
-        /// </summary>
-        public int UserId { get; set; }
     }
 }

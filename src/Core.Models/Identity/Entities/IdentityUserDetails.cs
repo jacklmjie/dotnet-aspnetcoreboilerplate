@@ -14,6 +14,11 @@ namespace Core.Models.Identity.Entities
         public override long Id { get; set; }
 
         /// <summary>
+        /// 用户Id
+        /// </summary>
+        public long UserId { get; set; }
+
+        /// <summary>
         /// 邮箱
         /// </summary>
         public string Email { get; set; }
@@ -37,10 +42,5 @@ namespace Core.Models.Identity.Entities
         /// 创建时间
         /// </summary>
         public DateTime CreatedTime { get; set; }
-
-        /// <summary>
-        /// 用户Id
-        /// </summary>
-        public long UserId { get; set; }
     }
 }

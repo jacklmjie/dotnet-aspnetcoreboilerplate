@@ -20,6 +20,6 @@ namespace Core.Models.Identity.Entities
         /// <summary>
         /// 角色Id
         /// </summary>
-        public long RoleId { get; set; }
+        public int RoleId { get; set; }
     }
 }

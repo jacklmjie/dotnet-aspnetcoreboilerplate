@@ -44,7 +44,7 @@ namespace Core.API
             services.AddRouting(options => options.LowercaseUrls = true);
             services.AddDapperDBContext<TestDBContext>(options =>
             {
-                options.Configuration = Configuration["DbContexts:MySql:ConnectionString"]; ;
+                options.Configuration = Configuration.GetConnectionString("MySqlCoreAPI");
             });
             services.Configure<SwaggerOption>(Configuration.GetSection("Swagger"));
             services.Configure<JwtOption>(Configuration.GetSection("Jwt"));
@@ -200,11 +200,11 @@ namespace Core.API
         {
             services.AddEasyCaching(option =>
             {
-                option.UseRedis(Configuration, "redis2", "EasyCaching:redis").WithJson();
+                option.UseRedis(Configuration, "redis", "EasyCaching:redis").WithJson();
             });
             services.ConfigureAspectCoreInterceptor(options =>
             {
-                options.CacheProviderName = "redis2";
+                options.CacheProviderName = "redis";
             });
         }
 
