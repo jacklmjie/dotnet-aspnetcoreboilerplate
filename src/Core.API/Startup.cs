@@ -3,10 +3,7 @@ using Core.API.Filters;
 using Core.Common.Options;
 using Core.Models.Identity.Entities;
 using Core.Repository.Infrastructure;
-using EasyCaching.Core;
 using EasyCaching.Interceptor.AspectCore;
-using EasyCaching.Redis;
-using EasyCaching.Serialization.Json;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -16,9 +13,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.IdentityModel.Tokens;
-using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.OpenApi.Models;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -65,7 +61,9 @@ namespace Core.API
                          //比如NotFound 的 HTTP 响应具有 404 状态代码和 ProblemDetails 正文
                          options.SuppressMapClientErrors = true;
                          //400 响应的默认响应类型为 ValidationProblemDetails，更改为true改为 SerializableError
-                         options.SuppressUseValidationProblemDetailsForInvalidModelStateResponses = false;
+                         //todo:3.1冲突了 需验证
+                         //options.SuppressUseValidationProblemDetailsForInvalidModelStateResponses = false;
+                         options.SuppressInferBindingSourcesForParameters = false;
                      });
             RegisterRepository(services);
             RegisterService(services);
@@ -177,22 +175,31 @@ namespace Core.API
             var swaggerOption = Configuration.GetSection("Swagger").Get<SwaggerOption>();
             services.AddSwaggerGen(options =>
             {
-                options.SwaggerDoc($"{swaggerOption.Version}", new Info() { Title = swaggerOption.Title, Version = $"{swaggerOption.Version}" });
+                options.SwaggerDoc($"{swaggerOption.Version}", new OpenApiInfo() { Title = swaggerOption.Title, Version = $"{swaggerOption.Version}" });
                 Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "*.xml").ToList().ForEach(file =>
                 {
                     options.IncludeXmlComments(file);
                 });
                 //权限Token
-                options.AddSecurityDefinition("Bearer", new ApiKeyScheme()
+                options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
                 {
                     Description = "请输入带有Bearer的Token，形如 “Bearer {Token}” ",
                     Name = "Authorization",
-                    In = "header"
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    BearerFormat = "JWT",
+                    Scheme = "Bearer"
                 });
-                options.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>>()
-                {
-                    { "Bearer", Enumerable.Empty<string>() }
-                });
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                    {
+                        {
+                            new OpenApiSecurityScheme{
+                                Reference = new OpenApiReference {
+                                            Type = ReferenceType.SecurityScheme,
+                                            Id = "Bearer"}
+                           },new string[] { }
+                        }
+                    });
             });
         }
 
@@ -208,15 +215,9 @@ namespace Core.API
             });
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
             ConfigureSwagger(app);
-            app.UseMvc();
         }
 
         private void ConfigureSwagger(IApplicationBuilder app)

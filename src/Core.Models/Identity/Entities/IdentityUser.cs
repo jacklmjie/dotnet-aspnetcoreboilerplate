@@ -1,5 +1,4 @@
 ﻿using Core.Common.Entity;
-using Dapper;
 
 namespace Core.Models.Identity.Entities
 {

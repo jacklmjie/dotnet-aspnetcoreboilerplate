@@ -27,6 +27,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{9A6BC53D-1
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{1A02E9F6-4149-477E-A1CE-2F72F0448ADF}"
+	ProjectSection(SolutionItems) = preProject
+		DOCKER.md = DOCKER.md
+		Dockerfile = Dockerfile
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{5367AD30-28F8-4ED3-BDF0-25E038C73F78}"
 EndProject

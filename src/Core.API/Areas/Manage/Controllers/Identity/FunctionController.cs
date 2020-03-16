@@ -2,9 +2,9 @@
 using Core.Models.Enum.Identity;
 using Core.Models.Identity.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ActionConstraints;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.AspNetCore.Mvc.Internal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,7 +18,7 @@ namespace Core.API.Areas.Manage.Controllers.Identity
     [Description("管理-功能")]
     public class FunctionController : ManageApiController
     {
-        private IActionDescriptorCollectionProvider _actionProvider;
+        private readonly IActionDescriptorCollectionProvider _actionProvider;
         public FunctionController(IActionDescriptorCollectionProvider actionProvider)
         {
             _actionProvider = actionProvider;
