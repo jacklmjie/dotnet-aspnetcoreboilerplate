@@ -39,6 +39,9 @@ namespace Core.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRouting(options => options.LowercaseUrls = true);
+            services.AddControllers()//是否首行缩进，有很多配置
+                    .AddJsonOptions(options => options.JsonSerializerOptions.WriteIndented = true);
+            //services.AddControllers().AddNewtonsoftJson();
             services.AddDapperDBContext<TestDBContext>(options =>
             {
                 options.Configuration = Configuration.GetConnectionString("MySqlCoreAPI");
