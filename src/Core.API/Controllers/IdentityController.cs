@@ -10,6 +10,7 @@ using Microsoft.Extensions.Options;
 using Core.Models.Identity.Entities;
 using Microsoft.AspNetCore.Authorization;
 using System.Linq;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace Core.API.Controllers
 {
@@ -62,6 +63,7 @@ namespace Core.API.Controllers
         [Authorize]
         //[ApiConventionMethod(typeof(MyAppConventions),
         //                     nameof(MyAppConventions.Get))]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public ActionResult GetUserInfo()
         {
             var claimsIdentity = User.Identity as ClaimsIdentity;

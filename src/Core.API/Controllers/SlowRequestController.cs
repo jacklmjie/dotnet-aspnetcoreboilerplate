@@ -24,7 +24,7 @@ namespace Core.API.Controllers
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         [HttpGet("/slowtest")]
-        public async Task<string> Get(CancellationToken cancellationToken)
+        public string Get(CancellationToken cancellationToken)
         {
             _logger.LogInformation("Starting to do slow work");
 

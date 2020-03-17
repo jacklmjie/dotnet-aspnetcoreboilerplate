@@ -2,8 +2,8 @@
 using System.Text;
 using Core.Common.Options;
 using System.Security.Claims;
-using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Core.Common.Identity
 {
