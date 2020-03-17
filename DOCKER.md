@@ -1,7 +1,7 @@
 #link方式
-docker build -t my/coreapi:dev .
-docker run -d -p 8001:80 --name coreapi my/coreapi:dev
-docker run -d -p 8001:80 --name coreapi --link mysql01:db my/userapi:dev
+docker build -t k8swebapi .
+docker run -d -p 8001:80 --name k8swebapi k8swebapi
+docker run -d -p 8001:80 --name k8swebapi --link mysql01:db k8swebapi
 docker logs mysql01
 docker rename mysql01 db
 docker inspect mysql01
@@ -11,10 +11,10 @@ docker network create -d bridge mybridge
 docker network ls
 docker network connect mybridge mysql01
 
-docker build -t my/coreapi:dev .
-docker run -d -p 8001:80 --net mybridge --name coreapi my/coreapi:dev
-docker inspect coreapi
-docker exec -it coreapi bash
+docker build -t k8swebapi .
+docker run -d -p 8001:80 --net mybridge --name k8swebapi k8swebapi
+docker inspect k8swebapi
+docker exec -it k8swebapi bash
 ping mysql01
 
 #consul
