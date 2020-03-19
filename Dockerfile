@@ -26,6 +26,3 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Core.API.dll"]
-
-#docker build -t k8swebapi .
-#docker run -d -p 8001:80 --net mybridge --name k8swebapi k8swebapi
