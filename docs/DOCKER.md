@@ -1,3 +1,10 @@
+#docker中文文档 https://yeasy.gitbooks.io/docker_practice/content/
+#docker基本命令
+docker images
+docker ps -a
+docker start/stop imageId
+docker rmi/rm imageId
+
 #link方式
 docker build -t k8swebapi .
 docker run -d -p 8001:80 --name k8swebapi k8swebapi
@@ -13,6 +20,7 @@ docker network connect mybridge mysql01
 
 docker build -t k8swebapi .
 docker run -d -p 8001:80 --net mybridge --name k8swebapi k8swebapi
+docker logs k8swebapi
 docker inspect k8swebapi
 docker exec -it k8swebapi bash
 ping mysql01
@@ -27,6 +35,9 @@ docker network connect mybridge consul02
 
 #redis
 docker run -d -p 6379:6379 --net mybridge --name redis01 redis
+
+#mysql
+docker run -d -p 3306:3306 -e MYSQL_USER=sqltest -e MYSQL_PASSWORD=pwd123 -e MYSQL_ROOT_PASSWORD=pwd123 -e MYSQL_ROOT_HOST=% -v D:/docker/mysql/config/my.cnf:/etc/my.cnf  -v D:/docker/mysql/data:/var/lib/mysql --name mysql01 mysql
 
 #其他
 查找本地端口号 netstat -aon|findstr "135"
