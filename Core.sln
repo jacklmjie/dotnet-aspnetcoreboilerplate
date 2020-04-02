@@ -26,6 +26,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{9A6BC53D-1
 		docs\CORE.API.md = docs\CORE.API.md
 		docs\DOCKER.md = docs\DOCKER.md
 		docs\Docker_命令.pdf = docs\Docker_命令.pdf
+		docs\k8s.md = docs\k8s.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{1A02E9F6-4149-477E-A1CE-2F72F0448ADF}"
