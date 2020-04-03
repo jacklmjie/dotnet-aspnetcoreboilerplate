@@ -136,6 +136,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalRChatDemo", "examples
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalRJWTDemo", "examples\SignalRDemo\SignalRJWTDemo\SignalRJWTDemo.csproj", "{6A4DF205-F040-4434-B00B-775A95A3BD0B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoWebApi", "demo\DemoWebApi\DemoWebApi.csproj", "{EEF94A99-B8E3-40D6-B955-E0846F22DD30}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -278,6 +280,10 @@ Global
 		{6A4DF205-F040-4434-B00B-775A95A3BD0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A4DF205-F040-4434-B00B-775A95A3BD0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A4DF205-F040-4434-B00B-775A95A3BD0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEF94A99-B8E3-40D6-B955-E0846F22DD30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEF94A99-B8E3-40D6-B955-E0846F22DD30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEF94A99-B8E3-40D6-B955-E0846F22DD30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEF94A99-B8E3-40D6-B955-E0846F22DD30}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -327,6 +333,7 @@ Global
 		{039B42AD-05AA-43AE-98A5-92C3B40F631D} = {9AE19DDA-663D-4E7D-86B1-F8DC31EBAF31}
 		{7EE50BE9-D3C8-4BD5-BCA8-AB4A558382F3} = {39F23B70-F0D9-4F77-8939-4F2328CA8232}
 		{6A4DF205-F040-4434-B00B-775A95A3BD0B} = {39F23B70-F0D9-4F77-8939-4F2328CA8232}
+		{EEF94A99-B8E3-40D6-B955-E0846F22DD30} = {771949F3-4674-4B20-9D54-0445FC609324}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {12C31BE3-8B81-4569-BA0C-C043E77C58D4}
