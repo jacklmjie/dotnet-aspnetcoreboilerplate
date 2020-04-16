@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <None Remove="Protos\greet.proto" />
+    <None Remove="Protos\LuCat.proto" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,9 +17,12 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="IdentityModel" Version="4.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Protobuf Include="Protos\greet.proto" GrpcServices="Client" />
+    <Protobuf Include="Protos\LuCat.proto" GrpcServices="Client" />
+    <!--<Protobuf Include="..\..\Protos\*.proto" GrpcServices="Server" Link="Protos\%(RecursiveDir)%(Filename)%(Extension)" />-->
   </ItemGroup>
 </Project>
