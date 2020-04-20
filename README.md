@@ -45,5 +45,9 @@
         - [高可用集群仓库搭建](https://juejin.im/post/5d973e246fb9a04dfa0963fb)
        - [x] [Docker容器监控工具与方案Prometheus](https://www.cnblogs.com/edisonchou/p/docker_monitor_introduction_part3.html)
        - [x] [Docker开源日志管理方案 ELK/EFK](https://www.cnblogs.com/edisonchou/p/docker_logs_study_summary_part2.html)
+  - grpc
+    - [ASP.NET Core gRPC 入门全家桶](https://www.cnblogs.com/stulzq/p/11897704.html)
+    - [真实环境 内网一般都使用的是http](https://www.cnblogs.com/stulzq/p/11697269.html)
+    - [demo 地址](/demo)
   - 移动端
     - [Xamarin 入门](https://docs.microsoft.com/zh-cn/xamarin/get-started/)
