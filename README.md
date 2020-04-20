@@ -30,6 +30,7 @@
   - [开源netcore前后端分离,前端服务端渲染方案](https://mp.weixin.qq.com/s/ZthEnKru9FjGOcCWcqiEgA)
   - [推荐一个很棒的开源工作流elsa-core](https://mp.weixin.qq.com/s/FKsmTpFxODQBRbSoWa3IwQ)
 - 2020年学习
+  - [Puppeteer 图片生成解决方案](/docs/Puppeteer服务生成图片.md)
   - 虚拟机
     - [学习linux命令，看这篇2w多字的linux命令详解](https://www.cnblogs.com/zhonglongbo/p/12115548.html)
     - [Windows10下安装centos7.0虚拟机环境](https://www.cnblogs.com/shengChristine/p/9284969.html)
