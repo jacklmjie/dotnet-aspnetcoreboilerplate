@@ -18,7 +18,8 @@ namespace AspNetCoreGrpcService.Services
             _logger = logger;
         }
 
-        [Authorize]
+        //需要授权
+        //[Authorize] 
         public override Task<SuckingCatResult> SuckingCat(Empty request, ServerCallContext context)
         {
             return Task.FromResult(new SuckingCatResult()

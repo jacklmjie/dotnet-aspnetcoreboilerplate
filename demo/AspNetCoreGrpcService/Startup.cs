@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NConsul.AspNetCore;
 
 namespace GrpcGreeter
 {
@@ -13,29 +14,33 @@ namespace GrpcGreeter
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddGrpc();
+            services.AddGrpc();
 
-            services.AddGrpc(options =>
-            {
-                options.Interceptors.Add<ServerLoggerInterceptor>();
-            });
+            //services.AddGrpc(options =>
+            //{
+            //    options.Interceptors.Add<ServerLoggerInterceptor>();
+            //});
 
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy(JwtBearerDefaults.AuthenticationScheme, policy =>
-                {
-                    policy.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme);
-                    policy.RequireClaim("sub");
-                });
-            });
+            services.AddConsul("http://localhost:8500")
+                    .AddGRPCHealthCheck("localhost:5001")
+                    .RegisterService("grpctest", "localhost", 5001, new[] { "xc/grpc/test" });
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
-                {
-                    options.Authority = "http://localhost:5002";
-                    options.RequireHttpsMetadata = false;
-                    options.Audience = "grpc1";
-                });
+            //services.AddAuthorization(options =>
+            //{
+            //    options.AddPolicy(JwtBearerDefaults.AuthenticationScheme, policy =>
+            //    {
+            //        policy.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme);
+            //        policy.RequireClaim("sub");
+            //    });
+            //});
+
+            //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            //    .AddJwtBearer(options =>
+            //    {
+            //        options.Authority = "http://localhost:5002";
+            //        options.RequireHttpsMetadata = false;
+            //        options.Audience = "grpc1";
+            //    });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -47,13 +52,14 @@ namespace GrpcGreeter
 
             app.UseRouting();
 
-            app.UseAuthentication();
-            app.UseAuthorization();
+            //app.UseAuthentication();
+            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGrpcService<GreeterService>();
                 endpoints.MapGrpcService<LuCatService>();
+                endpoints.MapGrpcService<HealthCheckService>();
 
                 endpoints.MapGet("/", async context =>
                 {

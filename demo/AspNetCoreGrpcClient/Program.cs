@@ -1,5 +1,6 @@
 ﻿using AspNetCoreGrpcClient.Filter;
 using AspNetCoreGrpcService;
+using Consul;
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using Grpc.Core.Interceptors;
@@ -21,58 +22,29 @@ namespace GrpcGreeterClient
     {
         static async Task Main(string[] args)
         {
-            // The port number(5001) must match the port of the gRPC server.
-            var channel = GrpcChannel.ForAddress("https://localhost:5001");
-            //var client = new Greeter.GreeterClient(channel);
-            //var reply = await client.SayHelloAsync(
-            //                  new HelloRequest { Name = "hello lmj" });
-            //Console.WriteLine("Greeter服务 返回数据: " + reply.Message);
+            //await ClientTest();
 
-            //await LuCatTest();
             //await ClientInterceptorTest();
 
-            await IdentityTest();
+            //await LuCatTest();
+
+            //await IdentityTest();
+
+            await ConsulTest();
 
             Console.ReadKey();
         }
 
-        static async Task IdentityTest()
+        static async Task ClientTest()
         {
-            // discover endpoints from metadata
-            var client = new HttpClient();
-
-            var disco = await client.GetDiscoveryDocumentAsync("http://localhost:5002");
-            if (disco.IsError)
-            {
-                Console.WriteLine(disco.Error);
-                return;
-            }
-
-            // request token
-            var tokenResponse = await client.RequestPasswordTokenAsync(new PasswordTokenRequest
-            {
-                Address = disco.TokenEndpoint,
-                ClientId = "ro.client",
-                ClientSecret = "secret",
-
-                UserName = "alice",
-                Password = "password",
-                Scope = "grpc1"
-            });
-
-            if (tokenResponse.IsError)
-            {
-                Console.WriteLine(tokenResponse.Error);
-                return;
-            }
-
-            Console.WriteLine(tokenResponse.Json);
-            Console.WriteLine("\n\n");
-
-            var headers = new Metadata { { "Authorization", $"Bearer {tokenResponse.Json["access_token"]}" } };
-            var catClient = new LuCat.LuCatClient(GrpcChannel.ForAddress("https://localhost:5001"));
-            var catReply = await catClient.SuckingCatAsync(new Empty(), headers);
-            Console.WriteLine("调用授权后的撸猫服务：" + catReply.Message);
+            //在gRPC实际使用中，在内网通讯场景下，更多的是走http协议，达到更高的效率
+            //启用通过http使用http2.0
+            AppContext.SetSwitch(
+                "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+            var channel = GrpcChannel.ForAddress("http://localhost:5001");
+            var catClient = new LuCat.LuCatClient(channel);
+            var catReply = await catClient.SuckingCatAsync(new Empty());
+            Console.WriteLine("调用撸猫服务：" + catReply.Message);
         }
 
         static async Task ClientInterceptorTest()
@@ -131,6 +103,70 @@ namespace GrpcGreeterClient
             await bathCatRespTask;
 
             Console.WriteLine("洗澡完毕");
+        }
+
+        static async Task IdentityTest()
+        {
+            // discover endpoints from metadata
+            var client = new HttpClient();
+
+            var disco = await client.GetDiscoveryDocumentAsync("http://localhost:5002");
+            if (disco.IsError)
+            {
+                Console.WriteLine(disco.Error);
+                return;
+            }
+
+            // request token
+            var tokenResponse = await client.RequestPasswordTokenAsync(new PasswordTokenRequest
+            {
+                Address = disco.TokenEndpoint,
+                ClientId = "ro.client",
+                ClientSecret = "secret",
+
+                UserName = "alice",
+                Password = "password",
+                Scope = "grpc1"
+            });
+
+            if (tokenResponse.IsError)
+            {
+                Console.WriteLine(tokenResponse.Error);
+                return;
+            }
+
+            Console.WriteLine(tokenResponse.Json);
+            Console.WriteLine("\n\n");
+
+            var headers = new Metadata { { "Authorization", $"Bearer {tokenResponse.Json["access_token"]}" } };
+            var catClient = new LuCat.LuCatClient(GrpcChannel.ForAddress("https://localhost:5001"));
+            var catReply = await catClient.SuckingCatAsync(new Empty(), headers);
+            Console.WriteLine("调用授权后的撸猫服务：" + catReply.Message);
+        }
+
+        static async Task ConsulTest()
+        {
+            var serviceName = "grpctest";
+            var consulClient = new ConsulClient(c => c.Address = new Uri("http://localhost:8500"));
+            var services = await consulClient.Catalog.Service(serviceName);
+            if (services.Response.Length == 0)
+            {
+                throw new Exception($"未发现服务 {serviceName}");
+            }
+
+            var service = services.Response[0];
+            var address = $"http://{service.ServiceAddress}:{service.ServicePort}";
+
+            Console.WriteLine($"获取服务地址成功：{address}");
+
+            //启用通过http使用http2.0
+            AppContext.SetSwitch(
+            "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+            var channel = GrpcChannel.ForAddress(address);
+            var catClient = new LuCat.LuCatClient(channel);
+            var catReply = await catClient.SuckingCatAsync(new Empty());
+            Console.WriteLine("调用撸猫服务：" + catReply.Message);
+            Console.ReadKey();
         }
     }
 }
