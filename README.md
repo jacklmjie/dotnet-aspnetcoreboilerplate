@@ -54,6 +54,7 @@
     - [部署过程解析与Dashboard](https://www.cnblogs.com/edisonchou/p/aspnet_core_on_k8s_deepstudy_part2.html)
       - [部署 dashboard 插件.yaml文件](https://github.com/opsnull/follow-me-install-kubernetes-cluster/blob/master/08-3.dashboard%E6%8F%92%E4%BB%B6.md)
       - [解决Google浏览器不能打开kubernetes dashboard方法](https://www.jianshu.com/p/8021285cc37d)
+    - [Deployment和yaml语法](https://www.cnblogs.com/edisonchou/p/aspnet_core_on_k8s_deepstudy_part3_1.html)
   - grpc
     - [ASP.NET Core gRPC 入门全家桶](https://www.cnblogs.com/stulzq/p/11897704.html)
     - [真实环境 内网一般都使用的是http](https://www.cnblogs.com/stulzq/p/11697269.html)
