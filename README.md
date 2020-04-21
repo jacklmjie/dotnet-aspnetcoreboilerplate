@@ -51,6 +51,7 @@
     - [K8S基础知识与集群搭建](https://www.cnblogs.com/edisonchou/p/aspnet_core_on_k8s_deepstudy_part1.html)
     - [部署过程解析与Dashboard](https://www.cnblogs.com/edisonchou/p/aspnet_core_on_k8s_deepstudy_part2.html)
       - [部署过程记录及问题解决](https://blog.csdn.net/weixin_44723434/article/details/94583457)
+      - [部署遇到的问题汇总](https://www.cnblogs.com/liuyi778/p/12229416.html)
   - grpc
     - [ASP.NET Core gRPC 入门全家桶](https://www.cnblogs.com/stulzq/p/11897704.html)
     - [真实环境 内网一般都使用的是http](https://www.cnblogs.com/stulzq/p/11697269.html)
