@@ -49,9 +49,11 @@
   - Kubernetes
     - [Windows docker k8s asp.net core](https://www.cnblogs.com/majiang/p/11328730.html)
     - [K8S基础知识与集群搭建](https://www.cnblogs.com/edisonchou/p/aspnet_core_on_k8s_deepstudy_part1.html)
-    - [部署过程解析与Dashboard](https://www.cnblogs.com/edisonchou/p/aspnet_core_on_k8s_deepstudy_part2.html)
       - [部署过程记录及问题解决](https://blog.csdn.net/weixin_44723434/article/details/94583457)
-      - [部署遇到的问题汇总](https://www.cnblogs.com/liuyi778/p/12229416.html)
+      - [节点无法加入问题汇总](https://www.cnblogs.com/liuyi778/p/12229416.html)
+    - [部署过程解析与Dashboard](https://www.cnblogs.com/edisonchou/p/aspnet_core_on_k8s_deepstudy_part2.html)
+      - [部署 dashboard 插件.yaml文件](https://github.com/opsnull/follow-me-install-kubernetes-cluster/blob/master/08-3.dashboard%E6%8F%92%E4%BB%B6.md)
+      - [解决Google浏览器不能打开kubernetes dashboard方法](https://www.jianshu.com/p/8021285cc37d)
   - grpc
     - [ASP.NET Core gRPC 入门全家桶](https://www.cnblogs.com/stulzq/p/11897704.html)
     - [真实环境 内网一般都使用的是http](https://www.cnblogs.com/stulzq/p/11697269.html)
