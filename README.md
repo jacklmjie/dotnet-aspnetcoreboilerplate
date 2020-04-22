@@ -29,6 +29,8 @@
   - [高性能短链设计 nginx+openRestry](https://www.cnblogs.com/xiekun/p/12500822.html)
   - [开源netcore前后端分离,前端服务端渲染方案](https://mp.weixin.qq.com/s/ZthEnKru9FjGOcCWcqiEgA)
   - [推荐一个很棒的开源工作流elsa-core](https://mp.weixin.qq.com/s/FKsmTpFxODQBRbSoWa3IwQ)
+- 2019年学习
+  - [JESSE老师的ASP.NET Core分布式微服务项目实战](https://github.com/jacklmjie/microservices)
 - 2020年学习
   - [Puppeteer 图片生成解决方案](/docs/Puppeteer服务生成图片.md)
   - 虚拟机
