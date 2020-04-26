@@ -21,6 +21,7 @@
   - [ASP.NET Core Razor 配置：预编译，动态编译，混合编译](http://www.zkea.net/codesnippet/detail/razor-compilation.html)
   - [静态文件](https://docs.microsoft.com/zh-cn/aspnet/core/fundamentals/static-files)
   - [HttpContext](https://docs.microsoft.com/zh-cn/aspnet/core/fundamentals/http-context)
+  - [选项卡IOptions、IOptionsMonitor、IOptionsSnapshot的区别](https://github.com/jacklmjie/aspnetcoreboilerplate/blob/master/examples/ConfigrationDemo/TestConfigration/Controllers/HomeController.cs)
 - ASP.NET Core WebAPI
   - [ASP.Net Core WebAPI 几种版本控制对比](https://www.cnblogs.com/runningsmallguo/p/7484954.html)
   - [Restful风格的接口](https://docs.microsoft.com/zh-cn/aspnet/core/web-api/advanced/conventions)
