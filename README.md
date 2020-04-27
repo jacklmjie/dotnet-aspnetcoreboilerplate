@@ -10,8 +10,6 @@
 .NET历史、开源之路、基础、路由、依赖注入DI、HttpContext、cookie|session、HttpClient、gRPC、单元测试、发布部署等等。
  ### [官方文档](https://docs.microsoft.com/zh-cn/aspnet/core/?view=aspnetcore-3.0)
 - [VS2019自带 反编译 与 Reflector 反编译工具比较](https://www.cnblogs.com/cjm123/p/10908910.html)
-- VS和.NET Core安装
-  - [完整构建VSCode开发调试环境](https://www.cnblogs.com/tianqing/p/11874558.html)
 - 基础
   - [后端开发术语大全](https://mp.weixin.qq.com/s/i4MAVUnDbP1tsdxaQpkjAQ)
   - [一文读懂QPS、TPS、PV、UV、GMV、IP、RPS](https://www.citrons.cn/jishu/226.html)
@@ -19,13 +17,12 @@
   - [内置中间件](https://docs.microsoft.com/zh-cn/aspnet/core/fundamentals/middleware/index?view=aspnetcore-2.2)
   - [.NET Core 3.0 新的 System.Text.Json API](https://www.cnblogs.com/waku/p/11026630.html)
   - [ASP.NET Core Razor 配置：预编译，动态编译，混合编译](http://www.zkea.net/codesnippet/detail/razor-compilation.html)
-  - [静态文件](https://docs.microsoft.com/zh-cn/aspnet/core/fundamentals/static-files)
-  - [HttpContext](https://docs.microsoft.com/zh-cn/aspnet/core/fundamentals/http-context)
   - [选项卡IOptions、IOptionsMonitor、IOptionsSnapshot的区别](https://github.com/jacklmjie/aspnetcoreboilerplate/blob/master/examples/ConfigrationDemo/TestConfigration/Controllers/HomeController.cs)
 - ASP.NET Core WebAPI
   - [ASP.Net Core WebAPI 几种版本控制对比](https://www.cnblogs.com/runningsmallguo/p/7484954.html)
   - [Restful风格的接口](https://docs.microsoft.com/zh-cn/aspnet/core/web-api/advanced/conventions)
   - [使用 Web API 分析器告警缺失的约定](https://docs.microsoft.com/zh-cn/aspnet/core/web-api/advanced/analyzers)
+  - [ASP.NET Core 中断请求](https://www.cnblogs.com/sheng-jie/p/9660288.html)
 - 方案
   - [高性能短链设计 nginx+openRestry](https://www.cnblogs.com/xiekun/p/12500822.html)
   - [开源netcore前后端分离,前端服务端渲染方案](https://mp.weixin.qq.com/s/ZthEnKru9FjGOcCWcqiEgA)
