@@ -46,6 +46,7 @@
         - [postgres连接不上 1.更改主机名](https://ywnz.com/linux/6051.html)
         - [postgres连接不上 2.postgres配置](https://stackoverflow.com/questions/31611674/cant-connect-to-postgres-server)
      - [Harbor1.9+Nginx高可用集群仓库](https://juejin.im/post/5d973e246fb9a04dfa0963fb)
+     - [基于App.Metrics+InfluxDB+Grafana实现统一性能监控CPU、内存](https://www.cnblogs.com/weiBlog/p/11717324.html)
      - [Docker容器监控工具与方案Prometheus](https://www.cnblogs.com/edisonchou/p/docker_monitor_introduction_part3.html)
      - [Docker开源日志管理方案 ELK/EFK](https://www.cnblogs.com/edisonchou/p/docker_logs_study_summary_part2.html)
   - Kubernetes
