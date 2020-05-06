@@ -73,3 +73,5 @@
     - [让ASP.NET Core 应用启动时线程池快速响应](https://q.cnblogs.com/q/117846/)
     - [KestrelHttpServer随机停止主要对高流量的响应](https://github.com/aspnet/KestrelHttpServer/issues/2104)
     - [PerfView诊断.NET Core ThreadPool饥饿](https://laptrinhx.com/diagnosing-net-core-threadpool-starvation-with-perfview-why-my-service-is-not-saturating-all-cores-or-seems-to-stall-3577553095/)
+    - [调试 .NET Core 中的内存泄漏](https://docs.microsoft.com/zh-cn/dotnet/core/diagnostics/debug-memory-leak)
+    - [Linux上的性能跟踪](https://github.com/dotnet/coreclr/blob/master/Documentation/project-docs/linux-performance-tracing.md)
