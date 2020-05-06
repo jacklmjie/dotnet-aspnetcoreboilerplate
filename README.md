@@ -65,3 +65,13 @@
     - [demo 地址](/demo)
   - 移动端
     - [Xamarin 入门](https://docs.microsoft.com/zh-cn/xamarin/get-started/)
+  - 性能
+    - [使用IHttpClientFactory实施弹性HTTP请求](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests)
+    - [HttpClient使用注意：预热与长连接](https://www.cnblogs.com/dudu/p/csharp-httpclient-attention.html#!comments)
+    - [并发连接的默认最大数](https://docs.microsoft.com/en-us/dotnet/api/system.net.servicepointmanager.defaultconnectionlimit?redirectedfrom=MSDN&view=netcore-3.1#System_Net_ServicePointManager_DefaultConnectionLimit)
+    - [ASP.NET核心性能最佳实践](https://docs.microsoft.com/en-us/aspnet/core/performance/performance-best-practices?view=aspnetcore-3.1)
+    - [让ASP.NET Core 应用启动时线程池快速响应](https://q.cnblogs.com/q/117846/)
+    - [KestrelHttpServer随机停止主要对高流量的响应](https://github.com/aspnet/KestrelHttpServer/issues/2104)
+    - [创建一个负载测试项目](https://docs.microsoft.com/en-us/visualstudio/test/quickstart-create-a-load-test-project?view=vs-2017)
+    - [PerfView诊断.NET Core ThreadPool饥饿](https://laptrinhx.com/diagnosing-net-core-threadpool-starvation-with-perfview-why-my-service-is-not-saturating-all-cores-or-seems-to-stall-3577553095/)
+    - [使用dotnet-dump查找.net core 3.0占用CPU高的原因](https://www.cnblogs.com/lonelyxmas/p/11074973.html)
