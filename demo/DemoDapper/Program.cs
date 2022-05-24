@@ -8,6 +8,7 @@ using Dapper;
 namespace DemoDapper
 {
     /// <summary>
+    /// https://www.cnblogs.com/ITWeiHan/p/11614704.html
     /// SplitOn区分类别Mapping组别
     /// TypeHandler 自订Mapping逻辑使用、底层逻辑
     /// QueryFirst。它使用CommandBehavior.SingleRow可以避免浪费资源只读取一行资料
